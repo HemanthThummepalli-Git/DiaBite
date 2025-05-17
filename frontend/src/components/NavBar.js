@@ -85,7 +85,7 @@ const NavBar = () => {
           }}
         >
           Welcome,{" "}
-          <span style={{ fontWeight: "600", color: "#007bff" }}>
+          <span className="highlight-text d-block">
             {currentUser?.name ||
               (localStorage.getItem("currentUser")
                 ? JSON.parse(localStorage.getItem("currentUser")).payload.name
