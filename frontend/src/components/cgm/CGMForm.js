@@ -146,158 +146,197 @@ const CGMForm = () => {
           {/* Sugar Level Tracking Form */}
           <div className="col-12 col-md-6">
           <Card
-            className="p-4 bg-light shadow"
+  style={{
+    padding: '1.5rem',
+    backgroundColor: '#f8f9fa',
+    borderRadius: '12px',
+    border: '1px solid #dee2e6',
+    boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
+    maxWidth: '100%',
+    margin: '0 auto',
+  }}
+>
+  <h2
+    style={{
+      textAlign: 'center',
+      marginBottom: '1.5rem',
+      color: '#0d6efd',
+      fontWeight: 600,
+      fontSize: '1.75rem',
+    }}
+  >
+    Sugar Level Tracking
+  </h2>
+
+  {message && (
+    <Alert
+      variant="success"
+      style={{
+        textAlign: 'center',
+        fontSize: '1rem',
+        fontWeight: 500,
+        borderRadius: '8px',
+        marginBottom: '1rem',
+      }}
+    >
+      {message}
+    </Alert>
+  )}
+
+  <Form onSubmit={handleSubmit}>
+    {/* Meal Type & Date */}
+    <div
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '1rem',
+        marginBottom: '1rem',
+      }}
+    >
+      <div style={{ flex: '1 1 300px' }}>
+        <Form.Group controlId="mealType">
+          <Form.Label style={{ fontWeight: 500, color: '#495057' }}>
+            <FaUtensils style={{ marginRight: '0.5rem' }} />
+            Meal Type
+          </Form.Label>
+          <Form.Control
+            type="text"
+            name="mealType"
+            value={formData.mealType}
+            onChange={(e) =>
+              setFormData({ ...formData, mealType: e.target.value })
+            }
             style={{
-              borderRadius: "12px",
-              border: "1px solid #dee2e6",
-              boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+              borderRadius: '8px',
+              padding: '10px',
+              border: '1px solid #ced4da',
+              width: '100%',
             }}
-          >
-            <h2
-              className="text-center mb-4 text-primary"
-              style={{ fontWeight: "600", fontSize: "1.75rem" }}
-            >
-              Sugar Level Tracking
-            </h2>
+          />
+        </Form.Group>
+      </div>
+      <div style={{ flex: '1 1 300px' }}>
+        <Form.Group controlId="date">
+          <Form.Label style={{ fontWeight: 500, color: '#495057' }}>
+            <FaCalendarAlt style={{ marginRight: '0.5rem' }} />
+            Date
+          </Form.Label>
+          <Form.Control
+            type="date"
+            name="date"
+            value={formData.date}
+            onChange={(e) =>
+              setFormData({ ...formData, date: e.target.value })
+            }
+            style={{
+              borderRadius: '8px',
+              padding: '10px',
+              border: '1px solid #ced4da',
+              width: '100%',
+            }}
+          />
+        </Form.Group>
+      </div>
+    </div>
 
-            {message && (
-              <Alert
-                variant="success"
-                className="text-center"
-                style={{ fontSize: "1rem", fontWeight: "500", borderRadius: "8px" }}
-              >
-                {message}
-              </Alert>
-            )}
+    {/* Fasting, Pre-Meal, Post-Meal Sugar */}
+    <div
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '1rem',
+        marginBottom: '1rem',
+      }}
+    >
+      <div style={{ flex: '1 1 200px' }}>
+        <Form.Group controlId="fastingSugarLevel">
+          <Form.Label style={{ fontWeight: 500, color: '#495057' }}>
+            <FaHeartbeat style={{ marginRight: '0.5rem' }} />
+            Fasting Sugar
+          </Form.Label>
+          <Form.Control
+            type="number"
+            name="fastingSugarLevel"
+            value={formData.fastingSugarLevel}
+            onChange={(e) =>
+              setFormData({ ...formData, fastingSugarLevel: e.target.value })
+            }
+            style={{
+              borderRadius: '8px',
+              padding: '10px',
+              border: '1px solid #ced4da',
+              width: '100%',
+            }}
+          />
+        </Form.Group>
+      </div>
+      <div style={{ flex: '1 1 200px' }}>
+        <Form.Group controlId="preMealSugarLevel">
+          <Form.Label style={{ fontWeight: 500, color: '#495057' }}>
+            <FaHeartbeat style={{ marginRight: '0.5rem' }} />
+            Pre-Meal Sugar
+          </Form.Label>
+          <Form.Control
+            type="number"
+            name="preMealSugarLevel"
+            value={formData.preMealSugarLevel}
+            onChange={(e) =>
+              setFormData({ ...formData, preMealSugarLevel: e.target.value })
+            }
+            style={{
+              borderRadius: '8px',
+              padding: '10px',
+              border: '1px solid #ced4da',
+              width: '100%',
+            }}
+          />
+        </Form.Group>
+      </div>
+      <div style={{ flex: '1 1 200px' }}>
+        <Form.Group controlId="postMealSugarLevel">
+          <Form.Label style={{ fontWeight: 500, color: '#495057' }}>
+            <FaHeartbeat style={{ marginRight: '0.5rem' }} />
+            Post-Meal Sugar
+          </Form.Label>
+          <Form.Control
+            type="number"
+            name="postMealSugarLevel"
+            value={formData.postMealSugarLevel}
+            onChange={(e) =>
+              setFormData({ ...formData, postMealSugarLevel: e.target.value })
+            }
+            style={{
+              borderRadius: '8px',
+              padding: '10px',
+              border: '1px solid #ced4da',
+              width: '100%',
+            }}
+          />
+        </Form.Group>
+      </div>
+    </div>
 
-            <Form onSubmit={handleSubmit}>
-              <Row>
-                <Col xs={12} md={6}>
-                  <Form.Group controlId="mealType">
-                    <Form.Label style={{ fontWeight: "500", color: "#495057" }}>
-                      <FaUtensils className="me-2" />
-                      Meal Type
-                    </Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="mealType"
-                      value={formData.mealType}
-                      onChange={(e) =>
-                        setFormData({ ...formData, mealType: e.target.value })
-                      }
-                      style={{
-                        borderRadius: "8px",
-                        padding: "10px",
-                        border: "1px solid #ced4da",
-                      }}
-                    />
-                  </Form.Group>
-                </Col>
-                <Col xs={12} md={6}>
-                  <Form.Group controlId="date">
-                    <Form.Label style={{ fontWeight: "500", color: "#495057" }}>
-                      <FaCalendarAlt className="me-2" />
-                      Date
-                    </Form.Label>
-                    <Form.Control
-                      type="date"
-                      name="date"
-                      value={formData.date}
-                      onChange={(e) =>
-                        setFormData({ ...formData, date: e.target.value })
-                      }
-                      style={{
-                        borderRadius: "8px",
-                        padding: "10px",
-                        border: "1px solid #ced4da",
-                      }}
-                    />
-                  </Form.Group>
-                </Col>
-              </Row>
+    <button
+      type="submit"
+      disabled={!isLoggedIn}
+      style={{
+        marginTop: '1.5rem',
+        width: '100%',
+        backgroundColor: '#0d6efd',
+        color: '#fff',
+        fontWeight: 600,
+        fontSize: '1rem',
+        padding: '12px',
+        borderRadius: '8px',
+        border: 'none',
+        cursor: isLoggedIn ? 'pointer' : 'not-allowed',
+      }}
+    >
+      📩 Submit Data
+    </button>
+  </Form>
+</Card>
 
-              <Row className="mt-3">
-                <Col xs={12} md={4}>
-                  <Form.Group controlId="fastingSugarLevel">
-                    <Form.Label style={{ fontWeight: "500", color: "#495057" }}>
-                      <FaHeartbeat className="me-2" />
-                      Fasting Sugar
-                    </Form.Label>
-                    <Form.Control
-                      type="number"
-                      name="fastingSugarLevel"
-                      value={formData.fastingSugarLevel}
-                      onChange={(e) =>
-                        setFormData({ ...formData, fastingSugarLevel: e.target.value })
-                      }
-                      style={{
-                        borderRadius: "8px",
-                        padding: "10px",
-                        border: "1px solid #ced4da",
-                      }}
-                    />
-                  </Form.Group>
-                </Col>
-                <Col xs={12} md={4}>
-                  <Form.Group controlId="preMealSugarLevel">
-                    <Form.Label style={{ fontWeight: "500", color: "#495057" }}>
-                      <FaHeartbeat className="me-2" />
-                      Pre-Meal Sugar
-                    </Form.Label>
-                    <Form.Control
-                      type="number"
-                      name="preMealSugarLevel"
-                      value={formData.preMealSugarLevel}
-                      onChange={(e) =>
-                        setFormData({ ...formData, preMealSugarLevel: e.target.value })
-                      }
-                      style={{
-                        borderRadius: "8px",
-                        padding: "10px",
-                        border: "1px solid #ced4da",
-                      }}
-                    />
-                  </Form.Group>
-                </Col>
-                <Col xs={12} md={4}>
-                  <Form.Group controlId="postMealSugarLevel">
-                    <Form.Label style={{ fontWeight: "500", color: "#495057" }}>
-                      <FaHeartbeat className="me-2" />
-                      Post-Meal Sugar
-                    </Form.Label>
-                    <Form.Control
-                      type="number"
-                      name="postMealSugarLevel"
-                      value={formData.postMealSugarLevel}
-                      onChange={(e) =>
-                        setFormData({ ...formData, postMealSugarLevel: e.target.value })
-                      }
-                      style={{
-                        borderRadius: "8px",
-                        padding: "10px",
-                        border: "1px solid #ced4da",
-                      }}
-                    />
-                  </Form.Group>
-                </Col>
-              </Row>
-
-              <Button
-                className="mt-4 w-100"
-                variant="primary"
-                type="submit"
-                disabled={!isLoggedIn}
-                style={{
-                  fontWeight: "600",
-                  fontSize: "1rem",
-                  padding: "12px",
-                  borderRadius: "8px",
-                }}
-              >
-                📩 Submit Data
-              </Button>
-            </Form>
-          </Card>
           </div>
 
 
