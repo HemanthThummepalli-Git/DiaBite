@@ -164,117 +164,147 @@ function OverallDashboard() {
   return (
     <div style={{ padding: "2rem", fontFamily: "'Poppins', sans-serif" }}>
       {/* User Overview Section */}
-      <Card
-  sx={{
-    width: "80%",
-    mb: 3,
-    p: 3,
-    boxShadow: "0px 6px 12px rgba(0, 0, 0, 0.15)",
-    borderRadius: 4,
-    background: "linear-gradient(135deg, #eef7ff, #ffffff)",
-    margin: "auto",
-  }}
->
-  <Box
-    sx={{
-      display: "flex",
-      alignItems: "center",
-      gap: 2,
-      borderBottom: "1px solid #cfd8dc",
-      pb: 2,
-      mb: 2,
-    }}
-  >
-    <Avatar sx={{ width: 60, height: 60, bgcolor: "#1976d2", fontSize: "1.5rem" }}>
-      {currentUser.name.charAt(0)}
-    </Avatar>
-    <Box>
-      <Typography variant="h5" fontWeight="bold" sx={{ color: "#1a237e" }}>
-        {currentUser.name}
-      </Typography>
-      <Typography variant="body1" color="text.secondary" sx={{ color: "#455a64" }}>
-        {currentUser.email}
-      </Typography>
-    </Box>
-  </Box>
-  <Box sx={{ textAlign: "left", ml: 1 }}>
-    <div className="d-flex justify-content-around align-items-center">
-    <div>
-    <Typography variant="body1" sx={{ mb: 0.5 }}>
-      <strong>Age:</strong> {currentUser.age} years
-    </Typography>
-    <Typography variant="body1" sx={{ mb: 0.5 }}>
-      <strong>Height:</strong> {currentUser.height} cm
-    </Typography>
-    <Typography variant="body1" sx={{ mb: 0.5 }}>
-      <strong>Weight:</strong> {currentUser.weight} kg
-    </Typography>
-    <Typography variant="body1" sx={{ mb: 0.5 }}>
-      <strong>Diabetes Type:</strong> {currentUser.diabetesType}
-    </Typography>
-    </div>
-    <div>
-    <Typography variant="body1" sx={{ mb: 0.5 }}>
-      <strong>Activity Level:</strong> {currentUser.activityLevel}
-    </Typography>
-    <Typography variant="body1" sx={{ mb: 0.5 }}>
-      <strong>Dietary Preference:</strong> {currentUser.dietaryPreference}
-    </Typography>
-    <Typography variant="body1" sx={{ mb: 0.5 }}>
-      <strong>Meal Type Preference:</strong> {currentUser.mealTypePreference}
-    </Typography>
-    <Typography variant="body1">
-      <strong>Food Allergies:</strong> {currentUser.foodAllergies.join(", ")}
-    </Typography>
-    </div>
-    </div>
-  </Box>
-</Card>
-
-
+      <div
+        style={{
+          width: "90%",
+          maxWidth: "800px",
+          margin: "auto",
+          marginBottom: "2rem",
+          padding: "1.5rem",
+          borderRadius: "1rem",
+          boxShadow: "0px 6px 12px rgba(0, 0, 0, 0.15)",
+          background: "linear-gradient(135deg, #eef7ff, #ffffff)",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "1rem",
+            borderBottom: "1px solid #cfd8dc",
+            paddingBottom: "1rem",
+            marginBottom: "1rem",
+            flexWrap: "wrap",
+          }}
+        >
+          <div
+            style={{
+              width: "60px",
+              height: "60px",
+              backgroundColor: "#1976d2",
+              color: "white",
+              borderRadius: "50%",
+              fontSize: "1.5rem",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontWeight: "bold",
+            }}
+          >
+            {currentUser.name.charAt(0)}
+          </div>
+          <div>
+            <h2 style={{ margin: 0, color: "#1a237e", fontWeight: "bold" }}>
+              {currentUser.name}
+            </h2>
+            <p style={{ margin: 0, color: "#455a64" }}>{currentUser.email}</p>
+          </div>
+        </div>
+  
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            flexWrap: "wrap",
+            gap: "1rem",
+          }}
+        >
+          <div style={{ flex: "1 1 250px" }}>
+            <p>
+              <strong>Age:</strong> {currentUser.age} years
+            </p>
+            <p>
+              <strong>Height:</strong> {currentUser.height} cm
+            </p>
+            <p>
+              <strong>Weight:</strong> {currentUser.weight} kg
+            </p>
+            <p>
+              <strong>Diabetes Type:</strong> {currentUser.diabetesType}
+            </p>
+          </div>
+          <div style={{ flex: "1 1 250px" }}>
+            <p>
+              <strong>Activity Level:</strong> {currentUser.activityLevel}
+            </p>
+            <p>
+              <strong>Dietary Preference:</strong> {currentUser.dietaryPreference}
+            </p>
+            <p>
+              <strong>Meal Type Preference:</strong>{" "}
+              {currentUser.mealTypePreference}
+            </p>
+            <p>
+              <strong>Food Allergies:</strong>{" "}
+              {currentUser.foodAllergies.join(", ")}
+            </p>
+          </div>
+        </div>
+      </div>
+  
       {/* Charts Section */}
-      <Box sx={{ p: 4, display: "flex", justifyContent: "center" }}>
-      <Grid2 container spacing={3} justifyContent="center">
-        <Grid2 xs={12} sm={6} md={4} lg={3}>
-          <ChartCard title="Sugar Levels">
-            <Box sx={{ height: 200, width: 300, mx: "auto" }}>
-              <Line data={sugarData} options={chartOptions} />
-            </Box>
-          </ChartCard>
-        </Grid2>
-        <Grid2 xs={12} sm={6} md={4} lg={3}>
-          <ChartCard title="Macro Distribution">
-            <Box sx={{ height: 200, width: 300, mx: "auto" }}>
-              <Pie data={macroData} options={chartOptions} />
-            </Box>
-          </ChartCard>
-        </Grid2>
-        <Grid2 xs={12} sm={6} md={4} lg={3}>
-          <ChartCard title="Daily Calories">
-            <Box sx={{ height: 200, width: 300, mx: "auto" }}>
-              <Bar data={foodLogData} options={chartOptions} />
-            </Box>
-          </ChartCard>
-        </Grid2>
-        <Grid2 xs={12} sm={6} md={4} lg={3}>
-          <ChartCard title="Protein Intake">
-            <Box sx={{ height: 200, width: 300, mx: "auto" }}>
-              <Bar data={proteinData} options={chartOptions} />
-            </Box>
-          </ChartCard>
-        </Grid2>
-        <Grid2 xs={12} sm={6} md={4} lg={3}>
-          <ChartCard title="Sugar Intake">
-            <Box sx={{ height: 200, width: 300, mx: "auto" }}>
-              <Line data={sugarIntakeData} options={chartOptions} />
-            </Box>
-          </ChartCard>
-        </Grid2>
-      </Grid2>
-    </Box>
-
+      <div
+        style={{
+          padding: "1rem",
+          display: "flex",
+          justifyContent: "center",
+          flexWrap: "wrap",
+          gap: "1rem",
+        }}
+      >
+        {[...Array(5)].map((_, index) => {
+          const chartData = [
+            sugarData,
+            macroData,
+            foodLogData,
+            proteinData,
+            sugarIntakeData,
+          ][index];
+          const titles = [
+            "Sugar Levels",
+            "Macro Distribution",
+            "Daily Calories",
+            "Protein Intake",
+            "Sugar Intake",
+          ];
+          const ChartType = [Line, Pie, Bar, Bar, Line][index];
+  
+          return (
+            <div
+              key={index}
+              style={{
+                flex: "1 1 300px",
+                maxWidth: "300px",
+                backgroundColor: "#ffffff",
+                borderRadius: "1rem",
+                boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+                padding: "1rem",
+                textAlign: "center",
+              }}
+            >
+              <h3 style={{ marginBottom: "1rem", color: "#1a237e" }}>
+                {titles[index]}
+              </h3>
+              <div style={{ height: "200px", width: "100%", margin: "auto" }}>
+                <ChartType data={chartData} options={chartOptions} />
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
+  
 }
 
 export default OverallDashboard;
