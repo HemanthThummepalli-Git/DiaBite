@@ -76,7 +76,7 @@ const NavBar = () => {
         </Nav.Link>
 
         <span
-          className="welcome-text"
+          className="welcome-text d-flex gap-2 align-items-center"
           style={{
             fontWeight: "500",
             color: "#333",
