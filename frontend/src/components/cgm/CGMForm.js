@@ -427,105 +427,124 @@ const CGMForm = () => {
 </div>
 
             
-        <Button
-              variant="info"
-              className="position-absolute top-0 start-0 m-3 rounded-circle d-flex align-items-center justify-content-center shadow border-0"
-              onClick={() => setShowGuide(true)}
-              style={{
-                width: "40px",
-                height: "40px",
-                backgroundColor: "#138496",
-                color: "white",
-                transition: "background-color 0.3s ease-in-out, transform 0.2s ease-in-out",
-              }}
-              onMouseEnter={(e) => e.target.style.backgroundColor = "#117a8b"}
-              onMouseLeave={(e) => e.target.style.backgroundColor = "#138496"}
-              onMouseDown={(e) => e.target.style.transform = "scale(0.9)"}
-              onMouseUp={(e) => e.target.style.transform = "scale(1)"}
-            >
-              <FaInfoCircle className="rounded p-0 shadow-0" />
-        </Button>
-
-        <div
+<Button
+  variant="info"
+  onClick={() => setShowGuide(true)}
   style={{
-    marginBottom: '1rem',
-    color: '#000',
-    textAlign: 'center',
-    borderTopLeftRadius: '0.5rem',
-    borderTopRightRadius: '0.5rem',
-    backgroundColor: '#f8f9fa',
-    padding: '1rem'
+    position: "absolute",
+    top: "1rem",
+    left: "1rem",
+    width: "40px",
+    height: "40px",
+    backgroundColor: "#138496",
+    color: "white",
+    borderRadius: "50%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    boxShadow: "0 2px 6px rgba(0, 0, 0, 0.2)",
+    border: "none",
+    zIndex: 10,
+    transition: "background-color 0.3s ease-in-out, transform 0.2s ease-in-out",
+    cursor: "pointer",
+  }}
+  onMouseEnter={(e) => {
+    e.target.style.backgroundColor = "#117a8b";
+  }}
+  onMouseLeave={(e) => {
+    e.target.style.backgroundColor = "#138496";
+  }}
+  onMouseDown={(e) => {
+    e.target.style.transform = "scale(0.9)";
+  }}
+  onMouseUp={(e) => {
+    e.target.style.transform = "scale(1)";
   }}
 >
-  <h4 style={{ fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-    <FaHistory /> Sugar Level History
-  </h4>
-</div>
+  <FaInfoCircle style={{ fontSize: "1.2rem" }} />
+</Button>
 
-<div style={{ overflowX: 'auto' }}>
-  <table
-    style={{
-      width: '100%',
-      marginTop: '1rem',
-      borderCollapse: 'collapse',
-      boxShadow: '0 0.125rem 0.25rem rgba(0, 0, 0, 0.075)',
-      borderRadius: '0.5rem',
-      overflow: 'hidden',
-      minWidth: '600px',
-    }}
-  >
-    <thead>
-      <tr style={{ backgroundColor: '#0d6efd', color: 'white' }}>
-        <th style={{ padding: '0.75rem', border: '1px solid #dee2e6' }}>Date</th>
-        <th style={{ padding: '0.75rem', border: '1px solid #dee2e6' }}>Meal Type</th>
-        <th style={{ padding: '0.75rem', border: '1px solid #dee2e6' }}>Fasting Sugar</th>
-        <th style={{ padding: '0.75rem', border: '1px solid #dee2e6' }}>Pre-Meal Sugar</th>
-        <th style={{ padding: '0.75rem', border: '1px solid #dee2e6' }}>Post-Meal Sugar</th>
-      </tr>
-    </thead>
-    <tbody>
-      {history.map((entry, index) => {
-        const badgeStyle = (level, low, mid, high) => {
-          if (level === null || level === 0) return { backgroundColor: 'transparent', color: '#000' };
-          if (level < low) return { backgroundColor: '#dc3545', color: '#fff' }; // danger
-          if (level <= mid) return { backgroundColor: '#198754', color: '#fff' }; // success
-          if (level <= high) return { backgroundColor: '#ffc107', color: '#000' }; // warning
-          return { backgroundColor: '#dc3545', color: '#fff' }; // danger
-        };
 
-        return (
-          <tr key={index}>
-            <td style={{ padding: '0.75rem', border: '1px solid #dee2e6', textAlign: 'center' }}>
-              {new Date(entry.date).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
+                <div
+          style={{
+            marginBottom: '1rem',
+            color: '#000',
+            textAlign: 'center',
+            borderTopLeftRadius: '0.5rem',
+            borderTopRightRadius: '0.5rem',
+            backgroundColor: '#f8f9fa',
+            padding: '1rem'
+          }}
+            >
+          <h4 style={{ fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+            <FaHistory /> Sugar Level History
+          </h4>
+        </div>
+
+        <div style={{ overflowX: 'auto' }}>
+          <table
+            style={{
+              width: '100%',
+              marginTop: '1rem',
+              borderCollapse: 'collapse',
+              boxShadow: '0 0.125rem 0.25rem rgba(0, 0, 0, 0.075)',
+              borderRadius: '0.5rem',
+              overflow: 'hidden',
+              minWidth: '600px',
+            }}
+          >
+            <thead>
+              <tr style={{ backgroundColor: '#0d6efd', color: 'white' }}>
+                <th style={{ padding: '0.75rem', border: '1px solid #dee2e6' }}>Date</th>
+                <th style={{ padding: '0.75rem', border: '1px solid #dee2e6' }}>Meal Type</th>
+                <th style={{ padding: '0.75rem', border: '1px solid #dee2e6' }}>Fasting Sugar</th>
+                <th style={{ padding: '0.75rem', border: '1px solid #dee2e6' }}>Pre-Meal Sugar</th>
+                <th style={{ padding: '0.75rem', border: '1px solid #dee2e6' }}>Post-Meal Sugar</th>
+              </tr>
+            </thead>
+            <tbody>
+              {history.map((entry, index) => {
+                const badgeStyle = (level, low, mid, high) => {
+                  if (level === null || level === 0) return { backgroundColor: 'transparent', color: '#000' };
+                  if (level < low) return { backgroundColor: '#dc3545', color: '#fff' }; // danger
+                  if (level <= mid) return { backgroundColor: '#198754', color: '#fff' }; // success
+                  if (level <= high) return { backgroundColor: '#ffc107', color: '#000' }; // warning
+                  return { backgroundColor: '#dc3545', color: '#fff' }; // danger
+                };
+
+                return (
+                  <tr key={index}>
+                    <td style={{ padding: '0.75rem', border: '1px solid #dee2e6', textAlign: 'center' }}>
+                      {new Date(entry.date).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </td>
+                    <td style={{ padding: '0.75rem', border: '1px solid #dee2e6', textAlign: 'center' }}>
+                      {entry.mealType}
+                    </td>
+                    <td style={{ padding: '0.75rem', border: '1px solid #dee2e6', textAlign: 'center' }}>
+                      <span style={{ padding: '0.25em 0.6em', borderRadius: '0.375rem', fontSize: '0.875em', ...badgeStyle(entry.fastingSugarLevel, 100, 125, Infinity) }}>
+                        {entry.fastingSugarLevel === null || entry.fastingSugarLevel === 0 ? "-" : `${entry.fastingSugarLevel} mg/dL`}
+                      </span>
+                    </td>
+                    <td style={{ padding: '0.75rem', border: '1px solid #dee2e6', textAlign: 'center' }}>
+                      <span style={{ padding: '0.25em 0.6em', borderRadius: '0.375rem', fontSize: '0.875em', ...badgeStyle(entry.preMealSugarLevel, 72, 99, 130) }}>
+                        {entry.preMealSugarLevel === null || entry.preMealSugarLevel === 0 ? "-" : `${entry.preMealSugarLevel} mg/dL`}
+                      </span>
+                    </td>
+                    <td style={{ padding: '0.75rem', border: '1px solid #dee2e6', textAlign: 'center' }}>
+                      <span style={{ padding: '0.25em 0.6em', borderRadius: '0.375rem', fontSize: '0.875em', ...badgeStyle(entry.postMealSugarLevel, 140, 180, Infinity) }}>
+                        {entry.postMealSugarLevel === null || entry.postMealSugarLevel === 0 ? "-" : `${entry.postMealSugarLevel} mg/dL`}
+                      </span>
+                    </td>
+                  </tr>
+                );
               })}
-            </td>
-            <td style={{ padding: '0.75rem', border: '1px solid #dee2e6', textAlign: 'center' }}>
-              {entry.mealType}
-            </td>
-            <td style={{ padding: '0.75rem', border: '1px solid #dee2e6', textAlign: 'center' }}>
-              <span style={{ padding: '0.25em 0.6em', borderRadius: '0.375rem', fontSize: '0.875em', ...badgeStyle(entry.fastingSugarLevel, 100, 125, Infinity) }}>
-                {entry.fastingSugarLevel === null || entry.fastingSugarLevel === 0 ? "-" : `${entry.fastingSugarLevel} mg/dL`}
-              </span>
-            </td>
-            <td style={{ padding: '0.75rem', border: '1px solid #dee2e6', textAlign: 'center' }}>
-              <span style={{ padding: '0.25em 0.6em', borderRadius: '0.375rem', fontSize: '0.875em', ...badgeStyle(entry.preMealSugarLevel, 72, 99, 130) }}>
-                {entry.preMealSugarLevel === null || entry.preMealSugarLevel === 0 ? "-" : `${entry.preMealSugarLevel} mg/dL`}
-              </span>
-            </td>
-            <td style={{ padding: '0.75rem', border: '1px solid #dee2e6', textAlign: 'center' }}>
-              <span style={{ padding: '0.25em 0.6em', borderRadius: '0.375rem', fontSize: '0.875em', ...badgeStyle(entry.postMealSugarLevel, 140, 180, Infinity) }}>
-                {entry.postMealSugarLevel === null || entry.postMealSugarLevel === 0 ? "-" : `${entry.postMealSugarLevel} mg/dL`}
-              </span>
-            </td>
-          </tr>
-        );
-      })}
-    </tbody>
-  </table>
-</div>
+            </tbody>
+          </table>
+        </div>
 
           </Card>
         )}
