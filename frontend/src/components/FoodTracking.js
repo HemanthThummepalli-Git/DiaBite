@@ -341,51 +341,78 @@ const FoodTracking = () => {
         </Form.Control>
       </div>
       {sortedLogs.length === 0 ? (
-        <p style={styles.noLogs}>No food logs found.</p>
-      ) : (
-        sortedLogs.map(([date, logs]) => (
-          <div key={date} style={styles.logContainer} className="w-75 mx-auto">
-            <h3 style={styles.dateTitle}>{moment(date).format("MMMM D, YYYY")}</h3>
-            {logs.map((log) => (
-              <Card key={log._id} style={styles.foodLog}>
-                <Card.Body>
-                  <div style={styles.logHeader}>
-                    <h4 style={styles.mealType}>{log.mealType.toUpperCase()}</h4>
-                    <div style={styles.actionButtons}>
-                      <Button variant="warning" onClick={() => modifyFoodLog(log._id)} style={styles.modifyButton}>
-                        Modify
-                      </Button>
-                      <Button variant="danger" onClick={() => deleteFoodLog(log._id)} style={styles.deleteButton}>
-                        Delete
-                      </Button>
-                    </div>
-                  </div>
-                  {log.foodItems.map((item, index) => (
-                    <div key={item.id || index} style={styles.foodItem}>
-                      <img src={item.photo} alt={item.foodName} style={styles.foodImage} />
-                      <div style={styles.foodDetailsContainer}>
-                        <strong style={styles.foodName}>{item.foodName}</strong>
-                        <p style={styles.foodDetails}>
-                          {item.servingQty} {item.servingUnit} | {item.brandName || "Generic"}
-                        </p>
-                        <p style={styles.foodNutrients}>
-                          <strong>Calories:</strong> {item.calories} cal | <strong>Protein:</strong> {item.protein}g |{" "}
-                          <strong>Carbs:</strong> {item.carbs}g | <strong>Fats:</strong> {item.fats}g
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                  <div style={styles.summaryContainer}>
-                    <p style={styles.summary}>
-                      Total: {log.totalCalories} cal, {log.totalProtein}g Protein, {log.totalCarbs}g Carbs, {log.totalFats}g Fats
-                    </p>
-                  </div>
-                </Card.Body>
-              </Card>
+  <p style={styles.noLogs}>No food logs found.</p>
+) : (
+  sortedLogs.map(([date, logs]) => (
+    <div key={date} style={styles.logContainer} className="container px-2 px-md-4 mb-4">
+      <h3 style={styles.dateTitle} className="text-center text-md-start">
+        {moment(date).format("MMMM D, YYYY")}
+      </h3>
+      {logs.map((log) => (
+        <Card key={log._id} style={styles.foodLog} className="mb-3">
+          <Card.Body>
+            <div
+              style={styles.logHeader}
+              className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-2"
+            >
+              <h4 style={styles.mealType}>{log.mealType.toUpperCase()}</h4>
+              <div style={styles.actionButtons} className="d-flex gap-2">
+                <Button
+                  variant="warning"
+                  onClick={() => modifyFoodLog(log._id)}
+                  style={styles.modifyButton}
+                >
+                  Modify
+                </Button>
+                <Button
+                  variant="danger"
+                  onClick={() => deleteFoodLog(log._id)}
+                  style={styles.deleteButton}
+                >
+                  Delete
+                </Button>
+              </div>
+            </div>
+
+            {log.foodItems.map((item, index) => (
+              <div
+                key={item.id || index}
+                style={styles.foodItem}
+                className="d-flex flex-column flex-md-row align-items-start gap-3 mt-3"
+              >
+                <img
+                  src={item.photo}
+                  alt={item.foodName}
+                  style={styles.foodImage}
+                  className="img-fluid"
+                />
+                <div style={styles.foodDetailsContainer}>
+                  <strong style={styles.foodName}>{item.foodName}</strong>
+                  <p style={styles.foodDetails}>
+                    {item.servingQty} {item.servingUnit} | {item.brandName || "Generic"}
+                  </p>
+                  <p style={styles.foodNutrients}>
+                    <strong>Calories:</strong> {item.calories} cal | <strong>Protein:</strong>{" "}
+                    {item.protein}g | <strong>Carbs:</strong> {item.carbs}g | <strong>Fats:</strong>{" "}
+                    {item.fats}g
+                  </p>
+                </div>
+              </div>
             ))}
-          </div>
-        ))
-      )}
+
+            <div style={styles.summaryContainer}>
+              <p style={styles.summary}>
+                Total: {log.totalCalories} cal, {log.totalProtein}g Protein, {log.totalCarbs}g
+                Carbs, {log.totalFats}g Fats
+              </p>
+            </div>
+          </Card.Body>
+        </Card>
+      ))}
+    </div>
+  ))
+)}
+
 
       {/* Update Modal */}
     <Modal show={showUpdateModal} onHide={() => setShowUpdateModal(false)} centered>
