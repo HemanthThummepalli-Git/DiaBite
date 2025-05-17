@@ -58,7 +58,7 @@ app.use("/dash", dashboardRoutes);
 const frontendPath = path.join(__dirname, "../frontend/build");
 app.use(express.static(frontendPath));
 
-// Handle React Routes (Fix Refresh Issue)
+
 app.get("/", (req, res) => {
     res.send("Diabite API is running successfully!");
   });

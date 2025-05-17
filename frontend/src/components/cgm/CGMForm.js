@@ -145,160 +145,160 @@ const CGMForm = () => {
         <div className="row g-4 justify-content-center align-items-center">
           {/* Sugar Level Tracking Form */}
           <div className="col-12 col-md-6">
-  <Card
-    className="p-4 bg-light shadow"
-    style={{
-      borderRadius: "12px",
-      border: "1px solid #dee2e6",
-      boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
-    }}
-  >
-    <h2
-      className="text-center mb-4 text-primary"
-      style={{ fontWeight: "600", fontSize: "1.75rem" }}
-    >
-      Sugar Level Tracking
-    </h2>
+          <Card
+            className="p-4 bg-light shadow"
+            style={{
+              borderRadius: "12px",
+              border: "1px solid #dee2e6",
+              boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <h2
+              className="text-center mb-4 text-primary"
+              style={{ fontWeight: "600", fontSize: "1.75rem" }}
+            >
+              Sugar Level Tracking
+            </h2>
 
-    {message && (
-      <Alert
-        variant="success"
-        className="text-center"
-        style={{ fontSize: "1rem", fontWeight: "500", borderRadius: "8px" }}
-      >
-        {message}
-      </Alert>
-    )}
+            {message && (
+              <Alert
+                variant="success"
+                className="text-center"
+                style={{ fontSize: "1rem", fontWeight: "500", borderRadius: "8px" }}
+              >
+                {message}
+              </Alert>
+            )}
 
-    <Form onSubmit={handleSubmit}>
-      <Row>
-        <Col xs={12} md={6}>
-          <Form.Group controlId="mealType">
-            <Form.Label style={{ fontWeight: "500", color: "#495057" }}>
-              <FaUtensils className="me-2" />
-              Meal Type
-            </Form.Label>
-            <Form.Control
-              type="text"
-              name="mealType"
-              value={formData.mealType}
-              onChange={(e) =>
-                setFormData({ ...formData, mealType: e.target.value })
-              }
-              style={{
-                borderRadius: "8px",
-                padding: "10px",
-                border: "1px solid #ced4da",
-              }}
-            />
-          </Form.Group>
-        </Col>
-        <Col xs={12} md={6}>
-          <Form.Group controlId="date">
-            <Form.Label style={{ fontWeight: "500", color: "#495057" }}>
-              <FaCalendarAlt className="me-2" />
-              Date
-            </Form.Label>
-            <Form.Control
-              type="date"
-              name="date"
-              value={formData.date}
-              onChange={(e) =>
-                setFormData({ ...formData, date: e.target.value })
-              }
-              style={{
-                borderRadius: "8px",
-                padding: "10px",
-                border: "1px solid #ced4da",
-              }}
-            />
-          </Form.Group>
-        </Col>
-      </Row>
+            <Form onSubmit={handleSubmit}>
+              <Row>
+                <Col xs={12} md={6}>
+                  <Form.Group controlId="mealType">
+                    <Form.Label style={{ fontWeight: "500", color: "#495057" }}>
+                      <FaUtensils className="me-2" />
+                      Meal Type
+                    </Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="mealType"
+                      value={formData.mealType}
+                      onChange={(e) =>
+                        setFormData({ ...formData, mealType: e.target.value })
+                      }
+                      style={{
+                        borderRadius: "8px",
+                        padding: "10px",
+                        border: "1px solid #ced4da",
+                      }}
+                    />
+                  </Form.Group>
+                </Col>
+                <Col xs={12} md={6}>
+                  <Form.Group controlId="date">
+                    <Form.Label style={{ fontWeight: "500", color: "#495057" }}>
+                      <FaCalendarAlt className="me-2" />
+                      Date
+                    </Form.Label>
+                    <Form.Control
+                      type="date"
+                      name="date"
+                      value={formData.date}
+                      onChange={(e) =>
+                        setFormData({ ...formData, date: e.target.value })
+                      }
+                      style={{
+                        borderRadius: "8px",
+                        padding: "10px",
+                        border: "1px solid #ced4da",
+                      }}
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
 
-      <Row className="mt-3">
-        <Col xs={12} md={4}>
-          <Form.Group controlId="fastingSugarLevel">
-            <Form.Label style={{ fontWeight: "500", color: "#495057" }}>
-              <FaHeartbeat className="me-2" />
-              Fasting Sugar
-            </Form.Label>
-            <Form.Control
-              type="number"
-              name="fastingSugarLevel"
-              value={formData.fastingSugarLevel}
-              onChange={(e) =>
-                setFormData({ ...formData, fastingSugarLevel: e.target.value })
-              }
-              style={{
-                borderRadius: "8px",
-                padding: "10px",
-                border: "1px solid #ced4da",
-              }}
-            />
-          </Form.Group>
-        </Col>
-        <Col xs={12} md={4}>
-          <Form.Group controlId="preMealSugarLevel">
-            <Form.Label style={{ fontWeight: "500", color: "#495057" }}>
-              <FaHeartbeat className="me-2" />
-              Pre-Meal Sugar
-            </Form.Label>
-            <Form.Control
-              type="number"
-              name="preMealSugarLevel"
-              value={formData.preMealSugarLevel}
-              onChange={(e) =>
-                setFormData({ ...formData, preMealSugarLevel: e.target.value })
-              }
-              style={{
-                borderRadius: "8px",
-                padding: "10px",
-                border: "1px solid #ced4da",
-              }}
-            />
-          </Form.Group>
-        </Col>
-        <Col xs={12} md={4}>
-          <Form.Group controlId="postMealSugarLevel">
-            <Form.Label style={{ fontWeight: "500", color: "#495057" }}>
-              <FaHeartbeat className="me-2" />
-              Post-Meal Sugar
-            </Form.Label>
-            <Form.Control
-              type="number"
-              name="postMealSugarLevel"
-              value={formData.postMealSugarLevel}
-              onChange={(e) =>
-                setFormData({ ...formData, postMealSugarLevel: e.target.value })
-              }
-              style={{
-                borderRadius: "8px",
-                padding: "10px",
-                border: "1px solid #ced4da",
-              }}
-            />
-          </Form.Group>
-        </Col>
-      </Row>
+              <Row className="mt-3">
+                <Col xs={12} md={4}>
+                  <Form.Group controlId="fastingSugarLevel">
+                    <Form.Label style={{ fontWeight: "500", color: "#495057" }}>
+                      <FaHeartbeat className="me-2" />
+                      Fasting Sugar
+                    </Form.Label>
+                    <Form.Control
+                      type="number"
+                      name="fastingSugarLevel"
+                      value={formData.fastingSugarLevel}
+                      onChange={(e) =>
+                        setFormData({ ...formData, fastingSugarLevel: e.target.value })
+                      }
+                      style={{
+                        borderRadius: "8px",
+                        padding: "10px",
+                        border: "1px solid #ced4da",
+                      }}
+                    />
+                  </Form.Group>
+                </Col>
+                <Col xs={12} md={4}>
+                  <Form.Group controlId="preMealSugarLevel">
+                    <Form.Label style={{ fontWeight: "500", color: "#495057" }}>
+                      <FaHeartbeat className="me-2" />
+                      Pre-Meal Sugar
+                    </Form.Label>
+                    <Form.Control
+                      type="number"
+                      name="preMealSugarLevel"
+                      value={formData.preMealSugarLevel}
+                      onChange={(e) =>
+                        setFormData({ ...formData, preMealSugarLevel: e.target.value })
+                      }
+                      style={{
+                        borderRadius: "8px",
+                        padding: "10px",
+                        border: "1px solid #ced4da",
+                      }}
+                    />
+                  </Form.Group>
+                </Col>
+                <Col xs={12} md={4}>
+                  <Form.Group controlId="postMealSugarLevel">
+                    <Form.Label style={{ fontWeight: "500", color: "#495057" }}>
+                      <FaHeartbeat className="me-2" />
+                      Post-Meal Sugar
+                    </Form.Label>
+                    <Form.Control
+                      type="number"
+                      name="postMealSugarLevel"
+                      value={formData.postMealSugarLevel}
+                      onChange={(e) =>
+                        setFormData({ ...formData, postMealSugarLevel: e.target.value })
+                      }
+                      style={{
+                        borderRadius: "8px",
+                        padding: "10px",
+                        border: "1px solid #ced4da",
+                      }}
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
 
-      <Button
-        className="mt-4 w-100"
-        variant="primary"
-        type="submit"
-        disabled={!isLoggedIn}
-        style={{
-          fontWeight: "600",
-          fontSize: "1rem",
-          padding: "12px",
-          borderRadius: "8px",
-        }}
-      >
-        📩 Submit Data
-      </Button>
-    </Form>
-  </Card>
-</div>
+              <Button
+                className="mt-4 w-100"
+                variant="primary"
+                type="submit"
+                disabled={!isLoggedIn}
+                style={{
+                  fontWeight: "600",
+                  fontSize: "1rem",
+                  padding: "12px",
+                  borderRadius: "8px",
+                }}
+              >
+                📩 Submit Data
+              </Button>
+            </Form>
+          </Card>
+          </div>
 
 
           {/* Analysis Section */}
@@ -325,17 +325,68 @@ const CGMForm = () => {
         {history.length > 0 && (
           <Card className="border-0 mt-2 w-100 position-relative">
 
-        <div className="d-flex justify-content-end mb-3">
-      {/* PDF Button */}
-      <Button variant="danger" onClick={downloadPDF} disabled={isDownloadingPDF} className="me-2">
-        {isDownloadingPDF ? <Spinner animation="border" size="sm" /> : <FaFilePdf className="me-2" />}Save as PDF
-      </Button>
+<div
+  style={{
+    display: 'flex',
+    justifyContent: 'flex-end',
+    flexWrap: 'wrap',
+    gap: '1rem',
+    marginBottom: '1rem',
+  }}
+>
+  {/* PDF Button */}
+  <button
+    onClick={downloadPDF}
+    disabled={isDownloadingPDF}
+    style={{
+      backgroundColor: '#dc3545',
+      color: '#fff',
+      border: 'none',
+      padding: '0.5rem 1rem',
+      fontSize: '1rem',
+      borderRadius: '0.375rem',
+      cursor: isDownloadingPDF ? 'not-allowed' : 'pointer',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '0.5rem',
+      opacity: isDownloadingPDF ? 0.6 : 1,
+    }}
+  >
+    {isDownloadingPDF ? (
+      <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" />
+    ) : (
+      <FaFilePdf />
+    )}
+    Save as PDF
+  </button>
 
-      {/* Excel Button */}
-      <Button variant="success" onClick={downloadExcel} disabled={isDownloadingExcel}>
-        {isDownloadingExcel ? <Spinner animation="border" size="sm" /> : <FaFileExcel className="me-2 " />}Save as Excel
-      </Button>
-    </div>
+  {/* Excel Button */}
+  <button
+    onClick={downloadExcel}
+    disabled={isDownloadingExcel}
+    style={{
+      backgroundColor: '#198754',
+      color: '#fff',
+      border: 'none',
+      padding: '0.5rem 1rem',
+      fontSize: '1rem',
+      borderRadius: '0.375rem',
+      cursor: isDownloadingExcel ? 'not-allowed' : 'pointer',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '0.5rem',
+      opacity: isDownloadingExcel ? 0.6 : 1,
+    }}
+  >
+    {isDownloadingExcel ? (
+      <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" />
+    ) : (
+      <FaFileExcel />
+    )}
+    Save as Excel
+  </button>
+</div>
+
             
         <Button
               variant="info"
@@ -356,63 +407,87 @@ const CGMForm = () => {
               <FaInfoCircle className="rounded p-0 shadow-0" />
         </Button>
 
-            <div className="mb-3 text-dark text-center rounded-top">
-              <h4 className="fw-bold">
-                <FaHistory className="me-2" /> Sugar Level History
-              </h4>
-            </div>
+        <div
+  style={{
+    marginBottom: '1rem',
+    color: '#000',
+    textAlign: 'center',
+    borderTopLeftRadius: '0.5rem',
+    borderTopRightRadius: '0.5rem',
+    backgroundColor: '#f8f9fa',
+    padding: '1rem'
+  }}
+>
+  <h4 style={{ fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+    <FaHistory /> Sugar Level History
+  </h4>
+</div>
 
-            <div className="table-responsive">
-              <Table striped bordered hover className="mt-3 shadow-sm rounded">
-                <thead className="bg-primary text-white">
-                  <tr>
-                    <th>Date</th>
-                    <th>Meal Type</th>
-                    <th>Fasting Sugar</th>
-                    <th>Pre-Meal Sugar</th>
-                    <th>Post-Meal Sugar</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {history.map((entry, index) => (
-                    <tr key={index} className="align-middle justify-content-center">
-                      <td>{new Date(entry.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</td>
-                      <td>{entry.mealType}</td>
+<div style={{ overflowX: 'auto' }}>
+  <table
+    style={{
+      width: '100%',
+      marginTop: '1rem',
+      borderCollapse: 'collapse',
+      boxShadow: '0 0.125rem 0.25rem rgba(0, 0, 0, 0.075)',
+      borderRadius: '0.5rem',
+      overflow: 'hidden',
+      minWidth: '600px',
+    }}
+  >
+    <thead>
+      <tr style={{ backgroundColor: '#0d6efd', color: 'white' }}>
+        <th style={{ padding: '0.75rem', border: '1px solid #dee2e6' }}>Date</th>
+        <th style={{ padding: '0.75rem', border: '1px solid #dee2e6' }}>Meal Type</th>
+        <th style={{ padding: '0.75rem', border: '1px solid #dee2e6' }}>Fasting Sugar</th>
+        <th style={{ padding: '0.75rem', border: '1px solid #dee2e6' }}>Pre-Meal Sugar</th>
+        <th style={{ padding: '0.75rem', border: '1px solid #dee2e6' }}>Post-Meal Sugar</th>
+      </tr>
+    </thead>
+    <tbody>
+      {history.map((entry, index) => {
+        const badgeStyle = (level, low, mid, high) => {
+          if (level === null || level === 0) return { backgroundColor: 'transparent', color: '#000' };
+          if (level < low) return { backgroundColor: '#dc3545', color: '#fff' }; // danger
+          if (level <= mid) return { backgroundColor: '#198754', color: '#fff' }; // success
+          if (level <= high) return { backgroundColor: '#ffc107', color: '#000' }; // warning
+          return { backgroundColor: '#dc3545', color: '#fff' }; // danger
+        };
 
-                      <td>
-                      <span className={`badge 
-                        ${entry.fastingSugarLevel === null || entry.fastingSugarLevel === 0 ? "" : 
-                        entry.fastingSugarLevel < 100 ? "bg-success" : 
-                        entry.fastingSugarLevel <= 125 ? "bg-warning" : "bg-danger"}`}>
-                        {entry.fastingSugarLevel === null || entry.fastingSugarLevel === 0 ? "-" : `${entry.fastingSugarLevel} mg/dL`}
-                      </span>
+        return (
+          <tr key={index}>
+            <td style={{ padding: '0.75rem', border: '1px solid #dee2e6', textAlign: 'center' }}>
+              {new Date(entry.date).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </td>
+            <td style={{ padding: '0.75rem', border: '1px solid #dee2e6', textAlign: 'center' }}>
+              {entry.mealType}
+            </td>
+            <td style={{ padding: '0.75rem', border: '1px solid #dee2e6', textAlign: 'center' }}>
+              <span style={{ padding: '0.25em 0.6em', borderRadius: '0.375rem', fontSize: '0.875em', ...badgeStyle(entry.fastingSugarLevel, 100, 125, Infinity) }}>
+                {entry.fastingSugarLevel === null || entry.fastingSugarLevel === 0 ? "-" : `${entry.fastingSugarLevel} mg/dL`}
+              </span>
+            </td>
+            <td style={{ padding: '0.75rem', border: '1px solid #dee2e6', textAlign: 'center' }}>
+              <span style={{ padding: '0.25em 0.6em', borderRadius: '0.375rem', fontSize: '0.875em', ...badgeStyle(entry.preMealSugarLevel, 72, 99, 130) }}>
+                {entry.preMealSugarLevel === null || entry.preMealSugarLevel === 0 ? "-" : `${entry.preMealSugarLevel} mg/dL`}
+              </span>
+            </td>
+            <td style={{ padding: '0.75rem', border: '1px solid #dee2e6', textAlign: 'center' }}>
+              <span style={{ padding: '0.25em 0.6em', borderRadius: '0.375rem', fontSize: '0.875em', ...badgeStyle(entry.postMealSugarLevel, 140, 180, Infinity) }}>
+                {entry.postMealSugarLevel === null || entry.postMealSugarLevel === 0 ? "-" : `${entry.postMealSugarLevel} mg/dL`}
+              </span>
+            </td>
+          </tr>
+        );
+      })}
+    </tbody>
+  </table>
+</div>
 
-                      </td>
-
-                      <td>
-                      <span className={`badge 
-                        ${entry.preMealSugarLevel === null || entry.preMealSugarLevel === 0 ? "" : 
-                        entry.preMealSugarLevel < 72 ? "bg-danger" : 
-                        entry.preMealSugarLevel <= 99 ? "bg-success" : 
-                        entry.preMealSugarLevel <= 130 ? "bg-warning" : "bg-danger"}`}>
-                        {entry.preMealSugarLevel === null || entry.preMealSugarLevel === 0 ? "-" : `${entry.preMealSugarLevel} mg/dL`}
-                      </span>
-                    </td>
-
-                    <td>
-                      <span className={`badge 
-                        ${entry.postMealSugarLevel === null || entry.postMealSugarLevel === 0 ? "" : 
-                        entry.postMealSugarLevel < 140 ? "bg-success" : 
-                        entry.postMealSugarLevel <= 180 ? "bg-warning" : "bg-danger"}`}>
-                        {entry.postMealSugarLevel === null || entry.postMealSugarLevel === 0 ? "-" : `${entry.postMealSugarLevel} mg/dL`}
-                      </span>
-                    </td>
-
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
-            </div>
           </Card>
         )}
       </div>
