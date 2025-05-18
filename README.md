@@ -6,10 +6,10 @@
 
 <p align="center">
   <a href="https://diabite.onrender.com"><strong>🌐 Live Demo</strong></a> • 
-  <a href="#features">🚀 Features</a> • 
-  <a href="#tech-stack">🧠 Tech Stack</a> • 
-  <a href="#getting-started">⚙️ Getting Started</a> • 
-  <a href="#team">👨‍💻 Team</a>
+  <a>🚀 Features</a> • 
+  <a >🧠 Tech Stack</a> • 
+  <a>⚙️ Getting Started</a> • 
+  <a>👨‍💻 Team</a>
 </p>
 
 ---
