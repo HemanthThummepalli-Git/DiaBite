@@ -80,7 +80,7 @@ const CGMAnalysis = ({ analysis }) => {
 
   return (
     <div style={styles.analysisContainer}>
-      <h3 style={styles.analysisHeading}>✨ Health Analysis</h3>
+      <h3 style={styles.analysisHeading}>✨Health Analysis</h3>
       <Card style={styles.analysisCard}>
         <Card.Body style={styles.cardBody}>
           {analysis.error ? (
@@ -121,7 +121,6 @@ const styles = {
     marginTop: "20px"
   },
   analysisHeading: {
-    color: "#007bff",
     textAlign: "center",
     marginBottom: "10px"
   },

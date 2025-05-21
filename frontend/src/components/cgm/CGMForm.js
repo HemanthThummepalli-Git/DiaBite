@@ -482,11 +482,7 @@ const CGMForm = () => {
 
         <div
   style={{
-    marginBottom: '1rem',
-    color: '#212529',
     textAlign: 'center',
-    borderTopLeftRadius: '0.5rem',
-    borderTopRightRadius: '0.5rem',
     backgroundColor: '#e9ecef',
     padding: '1rem',
     fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
@@ -499,7 +495,6 @@ const CGMForm = () => {
       alignItems: 'center',
       justifyContent: 'center',
       gap: '0.5rem',
-      color: '#0d6efd',
       userSelect: 'none',
     }}
   >
@@ -526,7 +521,7 @@ const CGMForm = () => {
       <tr
         style={{
           backgroundColor: '#0d6efd',
-          color: 'white',
+          color: '#fff',
           textTransform: 'uppercase',
           letterSpacing: '0.05em',
           fontWeight: '600',
@@ -541,94 +536,121 @@ const CGMForm = () => {
       </tr>
     </thead>
     <tbody>
-  {[...history]
-    .sort((a, b) => new Date(b.date) - new Date(a.date))
-    .map((entry, index) => {
-      const badgeStyle = (level, low, mid, high) => {
-        if (level === null || level === 0)
-          return { backgroundColor: 'transparent', color: '#6c757d' };
-        if (level < low) return { backgroundColor: '#dc3545', color: '#fff' };
-        if (level <= mid) return { backgroundColor: '#198754', color: '#fff' };
-        if (level <= high) return { backgroundColor: '#ffc107', color: '#212529' };
-        return { backgroundColor: '#dc3545', color: '#fff' };
-      };
+      {[...history]
+        .sort((a, b) => new Date(b.date) - new Date(a.date))
+        .map((entry, index) => {
+          const badgeStyle = (level, low, mid, high) => {
+            if (level === null || level === 0) {
+              return {
+                backgroundColor: 'transparent',
+                color: '#6c757d',
+                border: '1px solid #6c757d',
+              };
+            }
+            if (level < low) {
+              return {
+                backgroundColor: '#dc3545',
+                color: '#fff',
+                border: 'none',
+              };
+            }
+            if (level <= mid) {
+              return {
+                backgroundColor: '#198754',
+                color: '#fff',
+                border: 'none',
+              };
+            }
+            if (level <= high) {
+              return {
+                backgroundColor: '#ffc107',
+                color: '#212529',
+                border: 'none',
+              };
+            }
+            return {
+              backgroundColor: '#dc3545',
+              color: '#fff',
+              border: 'none',
+            };
+          };
 
-      return (
-        <tr
-          key={index}
-          style={{
-            backgroundColor: '#fefefe',
-            transition: 'background-color 0.3s ease',
-            cursor: 'default',
-          }}
-          onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#f1f3f5')}
-          onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#fefefe')}
-        >
-          <td style={{ padding: '0.75rem', textAlign: 'center', verticalAlign: 'middle' }}>
-            {new Date(entry.date).toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'short',
-              day: 'numeric',
-            })}
-          </td>
-          <td style={{ padding: '0.75rem', textAlign: 'center', verticalAlign: 'middle' }}>
-            {entry.mealType}
-          </td>
-          <td style={{ padding: '0.75rem', textAlign: 'center', verticalAlign: 'middle' }}>
-            <span
+          return (
+            <tr
+              key={index}
               style={{
-                display: 'inline-block',
-                padding: '0.25em 0.6em',
-                borderRadius: '0.375rem',
-                fontSize: '0.875em',
-                fontWeight: '600',
-                ...badgeStyle(entry.fastingSugarLevel, 100, 125, Infinity),
+                backgroundColor: '#fefefe',
+                transition: 'background-color 0.3s ease',
+                cursor: 'default',
               }}
+              onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#f1f3f5')}
+              onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#fefefe')}
             >
-              {entry.fastingSugarLevel === null || entry.fastingSugarLevel === 0
-                ? '-'
-                : `${entry.fastingSugarLevel} mg/dL`}
-            </span>
-          </td>
-          <td style={{ padding: '0.75rem', textAlign: 'center', verticalAlign: 'middle' }}>
-            <span
-              style={{
-                display: 'inline-block',
-                padding: '0.25em 0.6em',
-                borderRadius: '0.375rem',
-                fontSize: '0.875em',
-                fontWeight: '600',
-                ...badgeStyle(entry.preMealSugarLevel, 72, 99, 130),
-              }}
-            >
-              {entry.preMealSugarLevel === null || entry.preMealSugarLevel === 0
-                ? '-'
-                : `${entry.preMealSugarLevel} mg/dL`}
-            </span>
-          </td>
-          <td style={{ padding: '0.75rem', textAlign: 'center', verticalAlign: 'middle' }}>
-            <span
-              style={{
-                display: 'inline-block',
-                padding: '0.25em 0.6em',
-                borderRadius: '0.375rem',
-                fontSize: '0.875em',
-                fontWeight: '600',
-                ...badgeStyle(entry.postMealSugarLevel, 140, 180, Infinity),
-              }}
-            >
-              {entry.postMealSugarLevel === null || entry.postMealSugarLevel === 0
-                ? '-'
-                : `${entry.postMealSugarLevel} mg/dL`}
-            </span>
-          </td>
-        </tr>
-      );
-    })}
-</tbody>
-
+              <td style={{ padding: '0.75rem', textAlign: 'center', verticalAlign: 'middle' }}>
+                {new Date(entry.date).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric',
+                })}
+              </td>
+              <td style={{ padding: '0.75rem', textAlign: 'center', verticalAlign: 'middle' }}>
+                {entry.mealType}
+              </td>
+              <td style={{ padding: '0.75rem', textAlign: 'center', verticalAlign: 'middle' }}>
+                <span
+                  style={{
+                    display: 'inline-block',
+                    padding: '0.25em 0.6em',
+                    borderRadius: '0.375rem',
+                    fontSize: '0.875em',
+                    fontWeight: '600',
+                    ...badgeStyle(entry.fastingSugarLevel, 100, 125, Infinity),
+                  }}
+                >
+                  {entry.fastingSugarLevel === null || entry.fastingSugarLevel === 0
+                    ? '-'
+                    : `${entry.fastingSugarLevel} mg/dL`}
+                </span>
+              </td>
+              <td style={{ padding: '0.75rem', textAlign: 'center', verticalAlign: 'middle' }}>
+                <span
+                  style={{
+                    display: 'inline-block',
+                    padding: '0.25em 0.6em',
+                    borderRadius: '0.375rem',
+                    fontSize: '0.875em',
+                    fontWeight: '600',
+                    ...badgeStyle(entry.preMealSugarLevel, 72, 99, 130),
+                  }}
+                >
+                  {entry.preMealSugarLevel === null || entry.preMealSugarLevel === 0
+                    ? '-'
+                    : `${entry.preMealSugarLevel} mg/dL`}
+                </span>
+              </td>
+              <td style={{ padding: '0.75rem', textAlign: 'center', verticalAlign: 'middle' }}>
+                <span
+                  style={{
+                    display: 'inline-block',
+                    padding: '0.25em 0.6em',
+                    borderRadius: '0.375rem',
+                    fontSize: '0.875em',
+                    fontWeight: '600',
+                    ...badgeStyle(entry.postMealSugarLevel, 140, 180, Infinity),
+                  }}
+                >
+                  {entry.postMealSugarLevel === null || entry.postMealSugarLevel === 0
+                    ? '-'
+                    : `${entry.postMealSugarLevel} mg/dL`}
+                </span>
+              </td>
+            </tr>
+          );
+        })}
+    </tbody>
   </table>
 </div>
+
 
 
           </Card>
