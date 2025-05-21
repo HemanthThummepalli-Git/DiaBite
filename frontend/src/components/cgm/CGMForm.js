@@ -508,11 +508,8 @@ const CGMForm = () => {
       width: '100%',
       marginTop: '1rem',
       borderCollapse: 'separate',
-      borderSpacing: '0 0.5rem',
-      boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
       minWidth: '600px',
       backgroundColor: '#fff',
-      borderRadius: '0.5rem',
       fontSize: '0.95rem',
       color: '#343a40',
     }}
@@ -544,7 +541,7 @@ const CGMForm = () => {
               return {
                 backgroundColor: 'transparent',
                 color: '#6c757d',
-                border: '1px solid #6c757d',
+                border: 'none',
               };
             }
             if (level < low) {
