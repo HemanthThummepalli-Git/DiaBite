@@ -386,7 +386,6 @@ const CGMForm = () => {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    flexWrap: 'wrap',
     marginBottom: '1rem',
   }}
 >
