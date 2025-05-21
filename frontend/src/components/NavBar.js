@@ -93,7 +93,8 @@ const NavBar = () => {
                   <div>Dashboard</div>
                 </Nav.Link>
 
-                <span className="welcome-text d-flex gap-2 align-items-center justify-content-center">
+              <div className="d-flex align-items-center">
+              <span className="welcome-text d-flex gap-2 align-items-center justify-content-center">
                   Welcome,{" "}
                   <span className="highlight-text">
                     {currentUser?.name ||
@@ -105,12 +106,13 @@ const NavBar = () => {
 
                 <Button
                   variant="danger"
-                  as={NavLink}
                   className="btn-neon border-0"
                   onClick={SignOut}
                 >
                   <FaSignOutAlt className="me-1" /> Logout
                 </Button>
+              </div>
+                
               </div>
             ) : (
               <Button
