@@ -59,13 +59,14 @@ const NavBar = () => {
         </Navbar.Brand>
 
         <Navbar.Toggle
-        aria-controls="basic-navbar-nav"
-        className={`animated-toggler ${expanded ? "show-toggler" : ""}`}
-      >
-        <span className="line line1"></span>
-        <span className="line line2"></span>
-        <span className="line line3"></span>
-      </Navbar.Toggle>
+  aria-controls="basic-navbar-nav"
+  className={`animated-toggler ${expanded ? "expanded" : ""}`}
+>
+  <span className="bar top-bar"></span>
+  <span className="bar middle-bar"></span>
+  <span className="bar bottom-bar"></span>
+</Navbar.Toggle>
+
 
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mx-auto d-flex flex-column flex-lg-row fs-6 gap-3 text-center">
