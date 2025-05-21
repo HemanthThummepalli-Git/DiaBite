@@ -105,6 +105,7 @@ const NavBar = () => {
 
                 <Button
                   variant="danger"
+                  as={NavLink}
                   className="btn-neon border-0"
                   onClick={SignOut}
                 >
