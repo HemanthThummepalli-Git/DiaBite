@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CGMAnalysis from "./CGMAnalysis";
-import { Modal, Form, Button, Alert, Card, Container, Row, Col, Table, Spinner } from "react-bootstrap";
+import { Modal, Form, Button, Alert, Card, Container, Spinner } from "react-bootstrap";
 import { FaUtensils, FaHeartbeat, FaCalendarAlt, FaHistory, FaInfoCircle ,FaFilePdf, FaFileExcel} from "react-icons/fa";
 import * as XLSX from "xlsx";
 import jsPDF from "jspdf";
@@ -381,187 +381,255 @@ const CGMForm = () => {
         {history.length > 0 && (
           <Card className="border-0 mt-2 w-100 position-relative">
 
-<div
-  style={{
-    display: 'flex',
-    justifyContent: 'flex-end',
-    flexWrap: 'wrap',
-    gap: '1rem',
-    marginBottom: '1rem',
-  }}
->
-  {/* PDF Button */}
-  <button
-    onClick={downloadPDF}
-    disabled={isDownloadingPDF}
-    style={{
-      backgroundColor: '#dc3545',
-      color: '#fff',
-      border: 'none',
-      padding: '0.5rem 1rem',
-      fontSize: '1rem',
-      borderRadius: '0.375rem',
-      cursor: isDownloadingPDF ? 'not-allowed' : 'pointer',
-      display: 'flex',
-      alignItems: 'center',
-      gap: '0.5rem',
-      opacity: isDownloadingPDF ? 0.6 : 1,
-    }}
-  >
-    {isDownloadingPDF ? (
-      <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" />
-    ) : (
-      <FaFilePdf />
-    )}
-    Save as PDF
-  </button>
-
-  {/* Excel Button */}
-  <button
-    onClick={downloadExcel}
-    disabled={isDownloadingExcel}
-    style={{
-      backgroundColor: '#198754',
-      color: '#fff',
-      border: 'none',
-      padding: '0.5rem 1rem',
-      fontSize: '1rem',
-      borderRadius: '0.375rem',
-      cursor: isDownloadingExcel ? 'not-allowed' : 'pointer',
-      display: 'flex',
-      alignItems: 'center',
-      gap: '0.5rem',
-      opacity: isDownloadingExcel ? 0.6 : 1,
-    }}
-  >
-    {isDownloadingExcel ? (
-      <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" />
-    ) : (
-      <FaFileExcel />
-    )}
-    Save as Excel
-  </button>
-</div>
-
-            
-<Button
-  variant="info"
-  onClick={() => setShowGuide(true)}
-  style={{
-    position: "absolute",
-    top: "1rem",
-    left: "1rem",
-    width: "40px",
-    height: "40px",
-    backgroundColor: "#138496",
-    color: "white",
-    borderRadius: "50%",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    boxShadow: "0 2px 6px rgba(0, 0, 0, 0.2)",
-    border: "none",
-    zIndex: 10,
-    transition: "background-color 0.3s ease-in-out, transform 0.2s ease-in-out",
-    cursor: "pointer",
-  }}
-  onMouseEnter={(e) => {
-    e.target.style.backgroundColor = "#117a8b";
-  }}
-  onMouseLeave={(e) => {
-    e.target.style.backgroundColor = "#138496";
-  }}
-  onMouseDown={(e) => {
-    e.target.style.transform = "scale(0.9)";
-  }}
-  onMouseUp={(e) => {
-    e.target.style.transform = "scale(1)";
-  }}
->
-  <FaInfoCircle style={{ fontSize: "1.2rem" }} />
-</Button>
-
-
-                <div
+        <div
           style={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+            flexWrap: 'wrap',
+            gap: '1rem',
             marginBottom: '1rem',
-            color: '#000',
-            textAlign: 'center',
-            borderTopLeftRadius: '0.5rem',
-            borderTopRightRadius: '0.5rem',
-            backgroundColor: '#f8f9fa',
-            padding: '1rem'
           }}
-            >
-          <h4 style={{ fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-            <FaHistory /> Sugar Level History
-          </h4>
-        </div>
-
-        <div style={{ overflowX: 'auto' }}>
-          <table
+        >
+          {/* PDF Button */}
+          <button
+            onClick={downloadPDF}
+            disabled={isDownloadingPDF}
             style={{
-              width: '100%',
-              marginTop: '1rem',
-              borderCollapse: 'collapse',
-              boxShadow: '0 0.125rem 0.25rem rgba(0, 0, 0, 0.075)',
-              borderRadius: '0.5rem',
-              overflow: 'hidden',
-              minWidth: '600px',
+              backgroundColor: '#dc3545',
+              color: '#fff',
+              border: 'none',
+              padding: '0.5rem 1rem',
+              fontSize: '1rem',
+              borderRadius: '0.375rem',
+              cursor: isDownloadingPDF ? 'not-allowed' : 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              opacity: isDownloadingPDF ? 0.6 : 1,
             }}
           >
-            <thead>
-              <tr style={{ backgroundColor: '#0d6efd', color: 'white' }}>
-                <th style={{ padding: '0.75rem', border: '1px solid #dee2e6' }}>Date</th>
-                <th style={{ padding: '0.75rem', border: '1px solid #dee2e6' }}>Meal Type</th>
-                <th style={{ padding: '0.75rem', border: '1px solid #dee2e6' }}>Fasting Sugar</th>
-                <th style={{ padding: '0.75rem', border: '1px solid #dee2e6' }}>Pre-Meal Sugar</th>
-                <th style={{ padding: '0.75rem', border: '1px solid #dee2e6' }}>Post-Meal Sugar</th>
-              </tr>
-            </thead>
-            <tbody>
-              {history.map((entry, index) => {
-                const badgeStyle = (level, low, mid, high) => {
-                  if (level === null || level === 0) return { backgroundColor: 'transparent', color: '#000' };
-                  if (level < low) return { backgroundColor: '#dc3545', color: '#fff' }; // danger
-                  if (level <= mid) return { backgroundColor: '#198754', color: '#fff' }; // success
-                  if (level <= high) return { backgroundColor: '#ffc107', color: '#000' }; // warning
-                  return { backgroundColor: '#dc3545', color: '#fff' }; // danger
-                };
+            {isDownloadingPDF ? (
+              <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" />
+            ) : (
+              <FaFilePdf />
+            )}
+            Save as PDF
+          </button>
 
-                return (
-                  <tr key={index}>
-                    <td style={{ padding: '0.75rem', border: '1px solid #dee2e6', textAlign: 'center' }}>
-                      {new Date(entry.date).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      })}
-                    </td>
-                    <td style={{ padding: '0.75rem', border: '1px solid #dee2e6', textAlign: 'center' }}>
-                      {entry.mealType}
-                    </td>
-                    <td style={{ padding: '0.75rem', border: '1px solid #dee2e6', textAlign: 'center' }}>
-                      <span style={{ padding: '0.25em 0.6em', borderRadius: '0.375rem', fontSize: '0.875em', ...badgeStyle(entry.fastingSugarLevel, 100, 125, Infinity) }}>
-                        {entry.fastingSugarLevel === null || entry.fastingSugarLevel === 0 ? "-" : `${entry.fastingSugarLevel} mg/dL`}
-                      </span>
-                    </td>
-                    <td style={{ padding: '0.75rem', border: '1px solid #dee2e6', textAlign: 'center' }}>
-                      <span style={{ padding: '0.25em 0.6em', borderRadius: '0.375rem', fontSize: '0.875em', ...badgeStyle(entry.preMealSugarLevel, 72, 99, 130) }}>
-                        {entry.preMealSugarLevel === null || entry.preMealSugarLevel === 0 ? "-" : `${entry.preMealSugarLevel} mg/dL`}
-                      </span>
-                    </td>
-                    <td style={{ padding: '0.75rem', border: '1px solid #dee2e6', textAlign: 'center' }}>
-                      <span style={{ padding: '0.25em 0.6em', borderRadius: '0.375rem', fontSize: '0.875em', ...badgeStyle(entry.postMealSugarLevel, 140, 180, Infinity) }}>
-                        {entry.postMealSugarLevel === null || entry.postMealSugarLevel === 0 ? "-" : `${entry.postMealSugarLevel} mg/dL`}
-                      </span>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          {/* Excel Button */}
+          <button
+            onClick={downloadExcel}
+            disabled={isDownloadingExcel}
+            style={{
+              backgroundColor: '#198754',
+              color: '#fff',
+              border: 'none',
+              padding: '0.5rem 1rem',
+              fontSize: '1rem',
+              borderRadius: '0.375rem',
+              cursor: isDownloadingExcel ? 'not-allowed' : 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              opacity: isDownloadingExcel ? 0.6 : 1,
+            }}
+          >
+            {isDownloadingExcel ? (
+              <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" />
+            ) : (
+              <FaFileExcel />
+            )}
+            Save as Excel
+          </button>
         </div>
+
+        <Button
+          variant="info"
+          onClick={() => setShowGuide(true)}
+          style={{
+            position: "absolute",
+            top: "1rem",
+            left: "1rem",
+            width: "40px",
+            height: "40px",
+            backgroundColor: "#138496",
+            color: "white",
+            borderRadius: "50%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            boxShadow: "0 2px 6px rgba(0, 0, 0, 0.2)",
+            border: "none",
+            zIndex: 10,
+            transition: "background-color 0.3s ease-in-out, transform 0.2s ease-in-out",
+            cursor: "pointer",
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = "#117a8b";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = "#138496";
+          }}
+          onMouseDown={(e) => {
+            e.target.style.transform = "scale(0.9)";
+          }}
+          onMouseUp={(e) => {
+            e.target.style.transform = "scale(1)";
+          }}
+        >
+          <FaInfoCircle style={{ fontSize: "1.2rem" }} />
+        </Button>
+
+        <div
+  style={{
+    marginBottom: '1rem',
+    color: '#212529',
+    textAlign: 'center',
+    borderTopLeftRadius: '0.5rem',
+    borderTopRightRadius: '0.5rem',
+    backgroundColor: '#e9ecef',
+    padding: '1rem',
+    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+  }}
+>
+  <h4
+    style={{
+      fontWeight: '700',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: '0.5rem',
+      color: '#0d6efd',
+      userSelect: 'none',
+    }}
+  >
+    <FaHistory /> Sugar Level History
+  </h4>
+</div>
+
+<div style={{ overflowX: 'auto' }}>
+  <table
+    style={{
+      width: '100%',
+      marginTop: '1rem',
+      borderCollapse: 'separate',
+      borderSpacing: '0 0.5rem',
+      boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+      minWidth: '600px',
+      backgroundColor: '#fff',
+      borderRadius: '0.5rem',
+      fontSize: '0.95rem',
+      color: '#343a40',
+    }}
+  >
+    <thead>
+      <tr
+        style={{
+          backgroundColor: '#0d6efd',
+          color: 'white',
+          textTransform: 'uppercase',
+          letterSpacing: '0.05em',
+          fontWeight: '600',
+          borderRadius: '0.5rem',
+        }}
+      >
+        <th style={{ padding: '1rem', textAlign: 'center' }}>Date</th>
+        <th style={{ padding: '1rem', textAlign: 'center' }}>Meal Type</th>
+        <th style={{ padding: '1rem', textAlign: 'center' }}>Fasting Sugar</th>
+        <th style={{ padding: '1rem', textAlign: 'center' }}>Pre-Meal Sugar</th>
+        <th style={{ padding: '1rem', textAlign: 'center' }}>Post-Meal Sugar</th>
+      </tr>
+    </thead>
+    <tbody>
+  {[...history]
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .map((entry, index) => {
+      const badgeStyle = (level, low, mid, high) => {
+        if (level === null || level === 0)
+          return { backgroundColor: 'transparent', color: '#6c757d' };
+        if (level < low) return { backgroundColor: '#dc3545', color: '#fff' };
+        if (level <= mid) return { backgroundColor: '#198754', color: '#fff' };
+        if (level <= high) return { backgroundColor: '#ffc107', color: '#212529' };
+        return { backgroundColor: '#dc3545', color: '#fff' };
+      };
+
+      return (
+        <tr
+          key={index}
+          style={{
+            backgroundColor: '#fefefe',
+            transition: 'background-color 0.3s ease',
+            cursor: 'default',
+          }}
+          onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#f1f3f5')}
+          onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#fefefe')}
+        >
+          <td style={{ padding: '0.75rem', textAlign: 'center', verticalAlign: 'middle' }}>
+            {new Date(entry.date).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+            })}
+          </td>
+          <td style={{ padding: '0.75rem', textAlign: 'center', verticalAlign: 'middle' }}>
+            {entry.mealType}
+          </td>
+          <td style={{ padding: '0.75rem', textAlign: 'center', verticalAlign: 'middle' }}>
+            <span
+              style={{
+                display: 'inline-block',
+                padding: '0.25em 0.6em',
+                borderRadius: '0.375rem',
+                fontSize: '0.875em',
+                fontWeight: '600',
+                ...badgeStyle(entry.fastingSugarLevel, 100, 125, Infinity),
+              }}
+            >
+              {entry.fastingSugarLevel === null || entry.fastingSugarLevel === 0
+                ? '-'
+                : `${entry.fastingSugarLevel} mg/dL`}
+            </span>
+          </td>
+          <td style={{ padding: '0.75rem', textAlign: 'center', verticalAlign: 'middle' }}>
+            <span
+              style={{
+                display: 'inline-block',
+                padding: '0.25em 0.6em',
+                borderRadius: '0.375rem',
+                fontSize: '0.875em',
+                fontWeight: '600',
+                ...badgeStyle(entry.preMealSugarLevel, 72, 99, 130),
+              }}
+            >
+              {entry.preMealSugarLevel === null || entry.preMealSugarLevel === 0
+                ? '-'
+                : `${entry.preMealSugarLevel} mg/dL`}
+            </span>
+          </td>
+          <td style={{ padding: '0.75rem', textAlign: 'center', verticalAlign: 'middle' }}>
+            <span
+              style={{
+                display: 'inline-block',
+                padding: '0.25em 0.6em',
+                borderRadius: '0.375rem',
+                fontSize: '0.875em',
+                fontWeight: '600',
+                ...badgeStyle(entry.postMealSugarLevel, 140, 180, Infinity),
+              }}
+            >
+              {entry.postMealSugarLevel === null || entry.postMealSugarLevel === 0
+                ? '-'
+                : `${entry.postMealSugarLevel} mg/dL`}
+            </span>
+          </td>
+        </tr>
+      );
+    })}
+</tbody>
+
+  </table>
+</div>
+
 
           </Card>
         )}
