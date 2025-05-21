@@ -359,7 +359,7 @@ const CGMForm = () => {
 
           {/* Analysis Section */}
           {isLoggedIn && analysis && (
-  <div className="col-12 col-md-6">
+  <div className="col-12">
     <Card className="p-4 bg-white shadow-sm">
       {isLoading ? (
         <div className="d-flex justify-content-center align-items-center gap-2" style={{ height: "5rem" }}>
