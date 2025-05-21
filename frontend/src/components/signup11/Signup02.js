@@ -60,17 +60,36 @@ const Signup02 = () => {
       fontFamily: "Poppins, sans-serif", backgroundColor: "#f5f5f5"
     }}>
       {/* Progress Steps */}
-      <div style={{ display: "flex", justifyContent: "center", gap: "10px", marginBottom: "30px" }}>
-        {["Step 1: Basic Info", "Step 2: Health Details", "Step 3: Preferences"].map((step, index) => (
-          <div key={index} style={{ 
-            padding: "10px", borderRadius: "5px", fontWeight: "bold",
-            backgroundColor: index === 1 ? "#2196F3" : index === 0 ? "#4CAF50" : "#ddd", 
-            color: index === 2 ? "black" : "white" 
-          }}>
-            {step}
-          </div>
-        ))}
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: "10px",
+          marginBottom: "30px",
+        }}
+      >
+        {["Step 1: Basic Info", "Step 2: Health Details", "Step 3: Preferences"].map(
+          (step, index) => (
+            <div
+              key={index}
+              style={{
+                padding: "10px 20px",
+                borderRadius: "8px",
+                minWidth: "150px",
+                textAlign: "center",
+                flex: "1 1 auto",
+                backgroundColor:
+                  index === 1 ? "#2196F3" : index === 0 ? "#4CAF50" : "#ddd",
+                color: index === 2 ? "black" : "white",
+              }}
+            >
+              {step}
+            </div>
+          )
+        )}
       </div>
+
 
       {/* Form Container */}
       <div style={{

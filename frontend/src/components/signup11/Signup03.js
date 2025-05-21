@@ -78,12 +78,38 @@ const Signup03 = () => {
       }}
     >
       {/* Progress Steps */}
-      <div style={{ display: "flex", justifyContent: "center", gap: "10px", marginBottom: "40px" }}>
-        <div style={{ padding: "10px", borderRadius: "5px", backgroundColor: "#4CAF50", color: "white" }}>Step 1: Basic Info</div>
-        <div style={{ padding: "10px", borderRadius: "5px", backgroundColor: "#4CAF50", color: "white" }}>Step 2: Health Details</div>
-        <div style={{ padding: "10px", borderRadius: "5px", backgroundColor: "#2196F3", color: "white" }}>Step 3: Preferences</div>
+      <div
+  style={{
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    gap: "10px",
+    marginBottom: "30px",
+  }}
+>
+  {["Step 1: Basic Info", "Step 2: Health Details", "Step 3: Preferences"].map(
+    (step, index) => (
+      <div
+        key={index}
+        style={{
+          padding: "10px 20px",
+          borderRadius: "8px",
+          minWidth: "150px",
+          textAlign: "center",
+          flex: "1 1 auto",
+          backgroundColor:
+            index === 2 ? "#2196F3" : index === 1 || index === 0 ? "#4CAF50" : "#ddd",
+          color: "white"
+        }}
+      >
+        {step}
       </div>
+    )
+  )}
+</div>
 
+
+     
       {/* Form Container */}
       <div
         style={{

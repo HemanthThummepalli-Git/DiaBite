@@ -126,7 +126,6 @@
 
 .navbar-toggler:hover {
   box-shadow: 0px 0px 10px #2787e7;
-  background-color: #2787e7;
   color: #fefefe;
 }
 
@@ -134,3 +133,38 @@
 .navbar-collapse {
   transition: max-height 0.5s ease-in-out;
 }
+.animated-toggler {
+  width: 40px;
+  height: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border: none;
+  background: transparent;
+  padding: 6px;
+  z-index: 1051;
+  cursor: pointer;
+}
+
+.animated-toggler .line {
+  height: 4px;
+  width: 100%;
+  background: #2b6cb0;
+  border-radius: 2px;
+  transition: all 0.3s ease-in-out;
+  transform-origin: center;
+}
+
+.show-toggler .line1 {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.show-toggler .line2 {
+  opacity: 0;
+}
+
+.show-toggler .line3 {
+  transform: rotate(-45deg) translate(4.3px, -4px);
+}
+

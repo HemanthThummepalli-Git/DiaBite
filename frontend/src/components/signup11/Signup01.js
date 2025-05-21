@@ -61,43 +61,31 @@ const Signup01 = () => {
       <div
         style={{
           display: "flex",
-          gap: "10px",
-          marginBottom: "30px",
           flexWrap: "wrap",
           justifyContent: "center",
+          gap: "10px",
+          marginBottom: "30px",
         }}
       >
-        <div
-          style={{
-            padding: "10px 15px",
-            background: "#4caf50",
-            color: "white",
-            borderRadius: "5px",
-            fontWeight: "bold",
-          }}
-        >
-          Step 1: Basic Info
-        </div>
-        <div
-          style={{
-            padding: "10px 15px",
-            background: "#ddd",
-            color: "black",
-            borderRadius: "5px",
-          }}
-        >
-          Step 2: Health Details
-        </div>
-        <div
-          style={{
-            padding: "10px 15px",
-            background: "#ddd",
-            color: "black",
-            borderRadius: "5px",
-          }}
-        >
-          Step 3: Preferences
-        </div>
+        {["Step 1: Basic Info", "Step 2: Health Details", "Step 3: Preferences"].map(
+          (step, index) => (
+            <div
+              key={index}
+              style={{
+                padding: "10px 20px",
+                borderRadius: "8px",
+                minWidth: "150px",
+                textAlign: "center",
+                flex: "1 1 auto",
+                backgroundColor:
+                  index === 0 ? "#2196F3" : index === 0 ? "#4CAF50" : "#ddd",
+                color: index === 0 ? "white" : "black",
+              }}
+            >
+              {step}
+            </div>
+          )
+        )}
       </div>
 
       {/* Signup Form Container */}
