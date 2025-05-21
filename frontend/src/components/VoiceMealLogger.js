@@ -99,10 +99,16 @@ const VoiceMealLogger = () => {
         <Card.Body>
           <Form>
             {/* Heading */}
-            <div className="text-center">
-              <h2 className="fw-bold text-dark mb-1" style={{ fontSize: "1.5rem" }}>Voice-Based Food Logging</h2>
-              <p className="text-muted" style={{ fontSize: "0.9rem" }}>Press & hold to record your meal using voice</p>
-            </div>
+            <div className="text-center mb-4">
+            <h2 className="fw-bold text-dark mb-1 text-wrap 
+              fs-4 fs-md-3 fs-lg-2">
+              Voice-Based Food Logging
+            </h2>
+            <p className="text-muted text-center 
+              fs-6 fs-md-6 fs-lg-5">
+              Press & hold to record your meal using voice
+            </p>
+          </div>
 
             {/* Meal Type Selection */}
             <Form.Group controlId="mealType" className="mb-3">

@@ -191,9 +191,14 @@ const FoodTracking = () => {
         <Card.Body>
           <Form>
             {/* Heading */}
-            <div className="text-center">
-              <h2 className="fw-bold text-dark mb-1" style={{ fontSize: "1.5rem" }}>Text-Based Food Logging</h2>
-              <p className="text-muted " style={{ fontSize: "0.9rem" }}>Manually enter your meals and quantities</p>
+            <div className="text-center mb-4">
+            <h2 className="fw-bold text-dark mb-1 text-wrap text-center 
+              fs-4 fs-md-3 fs-lg-2">
+              Text-Based Food Logging
+            </h2>
+            <p className="text-muted text-center fs-6 fs-md-6 fs-lg-5">
+              Manually enter your meals and quantities
+            </p>
             </div>
 
             {/* Meal Type & Date */}
