@@ -384,7 +384,7 @@ const CGMForm = () => {
         <div
           style={{
             display: 'flex',
-            justifyContent: 'flex-end',
+            justifyContent: 'flex-between',
             marginBottom: '1rem',
           }}
         >
