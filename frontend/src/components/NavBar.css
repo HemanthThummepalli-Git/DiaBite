@@ -1,9 +1,21 @@
 /* Floating Glassmorphism Navbar */
+.navbar-glass-a {
+  background: linear-gradient(90deg, #2787e7, #004494);
+  position: relative;
+}
 
-
+/* Bottom Gradient Line */
+.navbar-glass-a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(90deg, #2787e7, #004494);
+}
 
 /* Brand Name with Neon Glow */
-/* Elegant Brand Name */
 .brand-glow {
   font-size: 2rem;
   font-weight: 700;
@@ -15,7 +27,6 @@
   text-transform: uppercase;
 }
 
-/* Hover Effect */
 .brand-glow:hover {
   background: linear-gradient(135deg, #004494, #002b80);
   -webkit-background-clip: text;
@@ -24,19 +35,16 @@
   text-shadow: 2px 2px 10px rgba(39, 135, 231, 0.4);
 }
 
-
 /* Elegant Navigation Links */
 .nav-link-glow {
   font-size: 1rem;
   font-weight: 500;
-  color: #222 !important; /* Darker shade for a premium look */
-  padding: 10px 18px;
+  color: #222 !important;
   position: relative;
   text-decoration: none;
   transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
 }
 
-/* Underline Effect */
 .nav-link-glow::after {
   content: "";
   position: absolute;
@@ -48,26 +56,22 @@
   transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
 }
 
-/* Expand underline on hover */
 .nav-link-glow:hover::after {
   width: 100%;
   left: 0;
 }
 
-/* Refined Hover Effect */
 .nav-link-glow:hover {
-  color: #004494 !important; /* Professional deep blue */
-  transform: translateY(-2px); /* Slight lift for better interaction */
+  color: #004494 !important;
+  transform: translateY(-2px);
 }
 
-/* Active Link Effect */
 .nav-link-glow.active {
   font-weight: 600;
   color: #004494 !important;
 }
 
-
-/* Welcome Text */
+/* Welcome Text & Highlighted Username */
 .welcome-text {
   font-size: 1rem;
   font-weight: 500;
@@ -79,14 +83,13 @@
   color: #2787e7;
 }
 
-/* Highlighted Username */
 .highlight-text {
   font-weight: bold;
   color: #74be52;
   text-shadow: 0px 0px 6px #74be52;
 }
 
-/* Modern Professional Button */
+/* Modern Button Style */
 .btn-neon {
   font-size: 1rem;
   font-weight: 600;
@@ -105,34 +108,15 @@
   cursor: pointer;
 }
 
-/* Hover Effect */
 .btn-neon:hover {
   background: linear-gradient(135deg, #0056b3, #004494);
-  
 }
 
-/* Active Click Effect */
 .btn-neon:active {
-  transform: translateY(1px); 
+  transform: translateY(1px);
 }
 
-
-/* Navbar Toggle Button */
-.navbar-toggler {
-  border: 2px solid #2787e7;
-  border-radius: 8px;
-  transition: all 0.3s ease-in-out;
-}
-
-.navbar-toggler:hover {
-  box-shadow: 0px 0px 10px #2787e7;
-  color: #fefefe;
-}
-
-/* Navbar Collapse Animation */
-.navbar-collapse {
-  transition: max-height 0.5s ease-in-out;
-}
+/* Animated Navbar Toggle */
 .animated-toggler {
   width: 40px;
   height: 32px;
@@ -149,7 +133,7 @@
 
 .animated-toggler .line {
   height: 4px;
-  width: 100%;
+  width: 22px;
   background: #2b6cb0;
   border-radius: 2px;
   transition: all 0.3s ease-in-out;
@@ -157,7 +141,7 @@
 }
 
 .show-toggler .line1 {
-  transform: rotate(45deg) translate(6px, 6px);
+  transform: rotate(45deg) translate(5px, 5px);
 }
 
 .show-toggler .line2 {
@@ -165,6 +149,10 @@
 }
 
 .show-toggler .line3 {
-  transform: rotate(-45deg) translate(4.3px, -4px);
+  transform: rotate(-45deg) translate(5px, -5px);
 }
 
+/* Collapse Animation */
+.navbar-collapse {
+  transition: max-height 0.5s ease-in-out;
+}

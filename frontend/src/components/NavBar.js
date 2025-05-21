@@ -45,7 +45,7 @@ const NavBar = () => {
       expand="lg"
       expanded={expanded}
       onToggle={setExpanded}
-      className="navbar-glass-a py-3"
+      className="py-3"
       ref={navRef}
       collapseOnSelect
     >

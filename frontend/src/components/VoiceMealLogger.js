@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
+import { Card, Form, Row, Col, Button, Alert } from "react-bootstrap";
+import { FaMicrophone, FaSyncAlt, FaUtensils, FaCalendarAlt } from "react-icons/fa";
 import axios from "axios";
 
 const VoiceMealLogger = () => {
@@ -89,145 +91,106 @@ const VoiceMealLogger = () => {
     };
 
     return (
-        <div
-            style={{
-                maxWidth: "500px",
-                margin: "auto",
-                padding: "30px",
-                borderRadius: "12px",
-                boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.15)",
-                textAlign: "center",
-                fontFamily: "'Poppins', sans-serif",
-                background: "#ffffff",
-                border: "1px solid #ddd",
-            }}
-        >
-            <h2 style={{ color: "#2c3e50", fontSize: "22px", fontWeight: "bold", marginBottom: "20px" }}>
-                🎙 Voice-Based Meal Logging
-            </h2>
-
-            {/* Meal Type Dropdown */}
-            <label
-                style={{
-                    fontSize: "16px",
-                    fontWeight: "600",
-                    color: "#444",
-                    display: "block",
-                    marginBottom: "8px",
-                }}
-            >
-                Meal Type:
-            </label>
-            <select
-                value={mealType}
-                onChange={(e) => setMealType(e.target.value)}
-                style={{
-                    width: "100%",
-                    padding: "12px",
-                    borderRadius: "8px",
-                    border: "1px solid #ccc",
-                    fontSize: "16px",
-                    background: "#fff",
-                    color: "#333",
-                    fontWeight: "bold",
-                    cursor: "pointer",
-                    boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.1)",
-                }}
-            >
-                <option value="">Select Meal Type</option>
-                <option value="Breakfast">🍳 Breakfast</option>
-                <option value="Lunch">🥗 Lunch</option>
-                <option value="Dinner">🍽️ Dinner</option>
-            </select>
-
-            {/* Buttons Section */}
-            <div className="d-flex justify-content-between align-items-center mt-4">
-                {/* Push-to-Talk Button */}
-                <button
-                    onMouseDown={handlePushToTalkStart}
-                    onMouseUp={handlePushToTalkEnd}
-                    onTouchStart={handlePushToTalkStart}
-                    onTouchEnd={handlePushToTalkEnd}
-                    style={{
-                        flex: 1,
-                        padding: "12px 18px",
-                        fontSize: "16px",
-                        border: "none",
-                        borderRadius: "8px",
-                        cursor: "pointer",
-                        fontWeight: "600",
-                        background: isListening ? "#d9534f" : "#0275d8",
-                        color: "white",
-                        transition: "0.3s",
-                        boxShadow: isListening
-                            ? "0 4px 10px rgba(217, 83, 79, 0.3)"
-                            : "0 4px 10px rgba(2, 117, 216, 0.3)",
-                    }}
-                >
-                    {isListening ? "🎤 Recording..." : "Press & Hold to Talk"}
-                </button>
-
-                {/* Reset Button */}
-                <button
-                    onClick={resetTranscript}
-                    style={{
-                        marginLeft: "10px",
-                        flex: 1,
-                        padding: "12px 16px",
-                        fontSize: "14px",
-                        border: "none",
-                        borderRadius: "8px",
-                        cursor: "pointer",
-                        fontWeight: "600",
-                        background: "#f39c12",
-                        color: "white",
-                        transition: "0.3s",
-                        boxShadow: "0px 4px 8px rgba(243, 156, 18, 0.4)",
-                    }}
-                >
-                    🔄 Reset
-                </button>
+        <div>
+  <Row className="justify-content-center">
+    {/* Voice-Based Meal Logging Form */}
+    <Col lg={6} md={8} sm={12} className="mb-4 w-100">
+      <Card className="shadow-sm rounded-3" style={{ backgroundColor: "#f8f9fa", padding: "20px" }}>
+        <Card.Body>
+          <Form>
+            {/* Heading */}
+            <div className="text-center">
+              <h2 className="fw-bold text-dark mb-1" style={{ fontSize: "1.5rem" }}>Voice-Based Food Logging</h2>
+              <p className="text-muted" style={{ fontSize: "0.9rem" }}>Press & hold to record your meal using voice</p>
             </div>
 
-            {/* Recorded Text Display */}
-            <p
-                style={{
-                    marginTop: "18px",
-                    background: "#f8f9fa",
-                    padding: "12px",
-                    borderRadius: "8px",
-                    fontWeight: "500",
-                    color: "#333",
-                    border: "1px solid #ccc",
-                    boxShadow: "0px 2px 5px rgba(0,0,0,0.1)",
-                }}
-            >
-                <strong>📜 Recorded Text:</strong> {transcript || "No input yet"}
-            </p>
+            {/* Meal Type Selection */}
+            <Form.Group controlId="mealType" className="mb-3">
+              <Form.Label className="fw-semibold text-dark">
+                <FaUtensils className="me-2 text-secondary" />
+                Meal Type</Form.Label>
+              <Form.Select
+                value={mealType}
+                onChange={(e) => setMealType(e.target.value)}
+                className="p-2 rounded"
+              >
+                <option value="">Select Meal Type</option>
+                <option value="breakfast">🍳 Breakfast</option>
+                <option value="lunch">🥗 Lunch</option>
+                <option value="dinner">🍽️ Dinner</option>
+              </Form.Select>
+            </Form.Group>
+
+            {/* Voice Buttons */}
+            <Row className="mb-3 g-3">
+              <Col xs={12} sm={6}>
+                <Button
+                  variant={isListening ? "danger" : "primary"}
+                  className="w-100 fw-semibold text-white"
+                  onMouseDown={handlePushToTalkStart}
+                  onMouseUp={handlePushToTalkEnd}
+                  onTouchStart={handlePushToTalkStart}
+                  onTouchEnd={handlePushToTalkEnd}
+                  style={{ minHeight: "45px" }}
+                >
+                  {isListening ? (
+                    <>
+                      <FaMicrophone className="me-2" />
+                      Recording...
+                    </>
+                  ) : (
+                    <>
+                      <FaMicrophone className="me-2" />
+                      Hold to Talk
+                    </>
+                  )}
+                </Button>
+              </Col>
+              <Col xs={12} sm={6}>
+                <Button
+                  variant="warning"
+                  className="w-100 fw-semibold text-white"
+                  onClick={resetTranscript}
+                  style={{ minHeight: "45px" }}
+                >
+                  <FaSyncAlt className="me-2" />
+                  Reset
+                </Button>
+              </Col>
+            </Row>
+
+            {/* Transcript Display */}
+            <Form.Group className="mb-4">
+              <Form.Label className="fw-semibold text-dark">Recorded Text</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={1}
+                readOnly
+                value={transcript || "No input yet"}
+                
+                style={{ fontSize: "1rem", resize: "vertical" }}
+              />
+            </Form.Group>
 
             {/* Submit Button */}
-            <button
-                onClick={handleSubmit}
-                disabled={isSubmitting}
-                style={{
-                    width: "100%",
-                    background: isSubmitting ? "#ccc" : "#28a745",
-                    color: "white",
-                    fontSize: "16px",
-                    padding: "12px 20px",
-                    marginTop: "15px",
-                    borderRadius: "8px",
-                    border: "none",
-                    cursor: isSubmitting ? "not-allowed" : "pointer",
-                    fontWeight: "600",
-                    transition: "0.3s",
-                    boxShadow: isSubmitting ? "none" : "0px 4px 8px rgba(40, 167, 69, 0.4)",
-                }}
+            <Button
+              variant="success"
+              type="button"
+              onClick={handleSubmit}
+              disabled={isSubmitting}
+              className="w-100 fw-semibold"
+              style={{ padding: "8px" }}
             >
-                {isSubmitting ? "⌛ Submitting..." : "Submit Meal"}
-            </button>
-        </div>
-    );
+              {isSubmitting ? "⌛ Submitting..." : "Submit Meal"}
+            </Button>
+          </Form>
+        </Card.Body>
+      </Card>
+    </Col>
+  </Row>
+</div>
+
+);
 };
 
 export default VoiceMealLogger;

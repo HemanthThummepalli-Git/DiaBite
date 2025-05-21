@@ -173,9 +173,9 @@ const FoodTracking = () => {
 
   if (loading) {
     return (
-      <div className="mx-auto d-flex flex-column align-items-center">
+      <div className="mt-5 d-flex flex-column align-items-center">
         <Spinner animation="border" variant="primary" />
-        <p style={{ marginTop: "10px", color: "#333" }}>Loading food tracker...</p>
+        <p style={{ marginTop: "10px", color: "#333" }} >Loading food tracker...</p>
       </div>
     );
   }
@@ -183,147 +183,146 @@ const FoodTracking = () => {
   return (
     <Container style={styles.container} className="w-100">
       <h2 className="text-center fw-bold">Food Tracker</h2>
-
-      <div className="container">
-  <Row className="justify-content-center my-4">
+      <div className="container py-4">
+  <Row className="justify-content-center">
     {/* Food Logging Form */}
-    <Col lg={6} md={8} sm={12} className="mb-4 mb-lg-0">
-  <Card style={{ backgroundColor: "#f8f9fa", borderRadius: "10px", padding: "20px", boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)" }}>
-    <Card.Body>
-      <Form>
-        <h3 className="fs-4 text-center mb-4 fw-bold text-primary">Text-Based Food Logging</h3>
+    <Col lg={6} md={8} sm={12} className="mb-4">
+      <Card className="shadow-sm rounded-3" style={{ backgroundColor: "#f8f9fa", padding: "20px" }}>
+        <Card.Body>
+          <Form>
+            {/* Heading */}
+            <div className="text-center">
+              <h2 className="fw-bold text-dark mb-1" style={{ fontSize: "1.5rem" }}>Text-Based Food Logging</h2>
+              <p className="text-muted " style={{ fontSize: "0.9rem" }}>Manually enter your meals and quantities</p>
+            </div>
 
-        <Row className="mb-3">
-          <Col lg={6} md={6} sm={12}>
-            <Form.Group controlId="mealType">
-              <Form.Label style={{ fontWeight: "600", color: "#333" }}>
-                <FaUtensils className="me-2 text-secondary" /> Meal Type
-              </Form.Label>
-              <Form.Control
-                as="select"
-                value={mealType}
-                onChange={(e) => setMealType(e.target.value)}
-                style={{ padding: "10px", borderRadius: "5px", border: "1px solid #ccc", backgroundColor: "#fff" }}
-              >
-                <option value="">Select Meal Type</option>
-                <option value="breakfast">Breakfast</option>
-                <option value="lunch">Lunch</option>
-                <option value="dinner">Dinner</option>
-              </Form.Control>
-            </Form.Group>
-          </Col>
+            {/* Meal Type & Date */}
+            <Row className="mb-3">
+              <Col md={6}>
+                <Form.Group controlId="mealType">
+                  <Form.Label className="fw-semibold text-dark">
+                    <FaUtensils className="me-2 text-secondary" />
+                    Meal Type
+                  </Form.Label>
+                  <Form.Select
+                    value={mealType}
+                    onChange={(e) => setMealType(e.target.value)}
+                    className="p-2 rounded"
+                  >
+                    <option value="">Select Meal Type</option>
+                    <option value="breakfast">Breakfast</option>
+                    <option value="lunch">Lunch</option>
+                    <option value="dinner">Dinner</option>
+                  </Form.Select>
+                </Form.Group>
+              </Col>
+              <Col md={6}>
+                <Form.Group controlId="date">
+                  <Form.Label className="fw-semibold text-dark">
+                    <FaCalendarAlt className="me-2 text-secondary" />
+                    Date
+                  </Form.Label>
+                  <Form.Control type="date" name="date" className="p-2 rounded" />
+                </Form.Group>
+              </Col>
+            </Row>
 
-          <Col lg={6} md={6} sm={12}>
-            <Form.Group controlId="date">
-              <Form.Label style={{ fontWeight: "600", color: "#333" }}>
-                <FaCalendarAlt className="me-2 text-secondary" /> Date
-              </Form.Label>
-              <Form.Control
-                type="date"
-                name="date"
-                style={{ padding: "10px", borderRadius: "5px", border: "1px solid #ccc", backgroundColor: "#fff" }}
-              />
-            </Form.Group>
-          </Col>
-        </Row>
+            {/* Food Name & Quantity */}
+            <Row className="mb-3">
+              <Col md={6}>
+                <Form.Group controlId="foodName">
+                  <Form.Label className="fw-semibold text-dark">Food Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter food name"
+                    value={foodName}
+                    onChange={(e) => setFoodName(e.target.value)}
+                    className="p-2 rounded"
+                  />
+                </Form.Group>
+              </Col>
+              <Col md={6}>
+                <Form.Group controlId="quantity">
+                  <Form.Label className="fw-semibold text-dark">Quantity</Form.Label>
+                  <Form.Control
+                    type="number"
+                    placeholder="Enter quantity"
+                    value={quantity}
+                    onChange={(e) => setQuantity(Number(e.target.value))}
+                    className="p-2 rounded"
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
 
-        <Row className="mb-3">
-          <Col lg={6} md={6} sm={12}>
-            <Form.Group controlId="foodName">
-              <Form.Label style={{ fontWeight: "600", color: "#333" }}>Food Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Food Name"
-                value={foodName}
-                onChange={(e) => setFoodName(e.target.value)}
-                style={{ padding: "10px", borderRadius: "5px", border: "1px solid #ccc", backgroundColor: "#fff" }}
-              />
-            </Form.Group>
-          </Col>
+            {/* Success/Error Messages */}
+            {successMessage && (
+              <Alert variant="success" className="text-center fw-medium">
+                {successMessage}
+              </Alert>
+            )}
+            {errorMessage && (
+              <Alert variant="danger" className="fw-medium">
+                {errorMessage}
+              </Alert>
+            )}
 
-          <Col lg={6} md={6} sm={12}>
-            <Form.Group controlId="quantity">
-              <Form.Label style={{ fontWeight: "600", color: "#333" }}>Quantity</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="Quantity"
-                value={quantity}
-                onChange={(e) => setQuantity(Number(e.target.value))}
-                style={{ padding: "10px", borderRadius: "5px", border: "1px solid #ccc", backgroundColor: "#fff" }}
-              />
-            </Form.Group>
-          </Col>
-        </Row>
-
-        {successMessage && (
-          <Alert variant="success" className="text-center" style={{ fontWeight: "500", color: "#155724", backgroundColor: "#d4edda", border: "1px solid #c3e6cb" }}>
-            {successMessage}
-          </Alert>
-        )}
-        {errorMessage && (
-          <Alert variant="danger" style={{ fontWeight: "500", color: "#721c24", backgroundColor: "#f8d7da", border: "1px solid #f5c6cb" }}>
-            {errorMessage}
-          </Alert>
-        )}
-
-        <Row className="justify-content-center mt-3">
-          <Col lg={5} md={6} sm={12} className="mb-2 d-flex justify-content-center">
-            <Button
-              variant="info"
-              onClick={addFoodItemToList}
-              className="w-100"
-              style={{ backgroundColor: "#17a2b8", color: "white", border: "none", padding: "10px 15px", fontSize: "16px", borderRadius: "5px" }}
-            >
-              + Add Food Item
-            </Button>
-          </Col>
-
-          <Col lg={5} md={6} sm={12} className="mb-2 d-flex justify-content-center">
-            <Button
-              variant="primary"
-              onClick={addFoodLog}
-              className="w-100"
-              style={{ backgroundColor: "#007bff", border: "none", padding: "10px 15px", fontSize: "16px", borderRadius: "5px" }}
-            >
-              Add Food Log
-            </Button>
-          </Col>
-        </Row>
-
-        {foodItems.length > 0 && (
-          <ul className="list-unstyled p-3 mt-3" style={{ backgroundColor: "#f1f3f5", borderRadius: "8px" }}>
-            {foodItems.map((item, index) => (
-              <li
-                key={index}
-                className="d-flex justify-content-between align-items-center p-2 border rounded mb-2"
-                style={{ backgroundColor: "#ffffff", boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)" }}
-              >
-                <span className="fw-bold">{item.name} - {item.quantity}</span>
+            {/* Buttons */}
+            <Row className="mt-3">
+              <Col md={6} className="mb-2">
                 <Button
-                  variant="link"
-                  onClick={() => setFoodItems(foodItems.filter((_, i) => i !== index))}
-                  style={{ color: "#ff4d4d", fontSize: "18px", padding: "2px", border: "none", background: "none", cursor: "pointer" }}
-                  onMouseOver={(e) => (e.currentTarget.style.color = "#ff0000")}
-                  onMouseOut={(e) => (e.currentTarget.style.color = "#ff4d4d")}
+                  variant="info"
+                  onClick={addFoodItemToList}
+                  className="w-100 text-white fw-semibold"
                 >
-                  ✖
+                  + Add Food Item
                 </Button>
-              </li>
-            ))}
-          </ul>
-        )}
-      </Form>
-    </Card.Body>
-  </Card>
-</Col>
+              </Col>
+              <Col md={6} className="mb-2">
+                <Button
+                  variant="primary"
+                  onClick={addFoodLog}
+                  className="w-100 fw-semibold"
+                >
+                  Add Food Log
+                </Button>
+              </Col>
+            </Row>
 
+            {/* Food Items List */}
+            {foodItems.length > 0 && (
+              <ul className="list-unstyled mt-4 bg-light p-3 rounded">
+                {foodItems.map((item, index) => (
+                  <li
+                    key={index}
+                    className="d-flex justify-content-between align-items-center mb-2 bg-white p-2 rounded shadow-sm"
+                  >
+                    <span className="fw-bold">
+                      {item.name} - {item.quantity}
+                    </span>
+                    <Button
+                      variant="link"
+                      className="text-danger fs-5 p-0"
+                      onClick={() => setFoodItems(foodItems.filter((_, i) => i !== index))}
+                    >
+                      ✖
+                    </Button>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </Form>
+        </Card.Body>
+      </Card>
+    </Col>
 
-    {/* Voice Meal Logger - Should be Side by Side on Large Screens, Stacked on Small Screens */}
+    {/* Voice Meal Logger */}
     <Col lg={6} md={8} sm={12}>
       <VoiceMealLogger />
     </Col>
   </Row>
 </div>
+
       
       {/* Food Log List */}
       <h3 style={styles.subHeading} className="fw-bold">Food Logs</h3>
@@ -559,12 +558,8 @@ const FoodTracking = () => {
 const styles = {
   container: {
     margin: "auto",
-    marginTop: "50px",
     padding: "20px",
     fontFamily: "Poppins, sans-serif",
-    background: "#f8f9fa",
-    borderRadius: "10px",
-    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
   },
   formCard: {
     width: "100%",
