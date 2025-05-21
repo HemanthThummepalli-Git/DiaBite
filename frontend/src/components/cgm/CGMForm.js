@@ -201,7 +201,7 @@ const CGMForm = () => {
           marginBottom: "1rem",
         }}
       >
-      <div style={{ flex: "1", minWidth: "250px" }}>
+      <div style={{ flex: "1", minWidth: "160px" }}>
           <Form.Group controlId="mealType">
             <Form.Label style={{ fontWeight: "500", color: "#495057" }}>
               <FaUtensils style={{ marginRight: "0.5rem" }} />
@@ -228,7 +228,7 @@ const CGMForm = () => {
           </Form.Group>
         </div>
 
-        <div style={{ flex: "1", minWidth: "250px" }}>
+        <div style={{ flex: "1", minWidth: "160px" }}>
           <Form.Group controlId="date">
             <Form.Label style={{ fontWeight: "500", color: "#495057" }}>
               <FaCalendarAlt style={{ marginRight: "0.5rem" }} />
