@@ -149,7 +149,7 @@ const VoiceMealLogger = () => {
               <Col xs={12} sm={6}>
                 <Button
                   variant="warning"
-                  className="w-100 fw-semibold text-white"
+                  className="w-100 fw-semibold text-black"
                   onClick={resetTranscript}
                   style={{ minHeight: "45px" }}
                 >

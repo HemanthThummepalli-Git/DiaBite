@@ -381,103 +381,105 @@ const CGMForm = () => {
         {history.length > 0 && (
           <Card className="border-0 mt-2 w-100 position-relative">
 
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'flex-between',
-            marginBottom: '1rem',
-          }}
-        >
+<div
+  style={{
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: '1rem',
+  }}
+>
+  {/* Info Circle Button */}
+  <Button
+    variant="info"
+    onClick={() => setShowGuide(true)}
+    style={{
+      width: "40px",
+      height: "40px",
+      backgroundColor: "#138496",
+      color: "white",
+      borderRadius: "50%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      boxShadow: "0 2px 6px rgba(0, 0, 0, 0.2)",
+      border: "none",
+      zIndex: 10,
+      transition: "background-color 0.3s ease-in-out, transform 0.2s ease-in-out",
+      cursor: "pointer",
+    }}
+    onMouseEnter={(e) => {
+      e.target.style.backgroundColor = "#117a8b";
+    }}
+    onMouseLeave={(e) => {
+      e.target.style.backgroundColor = "#138496";
+    }}
+    onMouseDown={(e) => {
+      e.target.style.transform = "scale(0.9)";
+    }}
+    onMouseUp={(e) => {
+      e.target.style.transform = "scale(1)";
+    }}
+  >
+    <FaInfoCircle style={{ fontSize: "1.2rem" }} />
+  </Button>
 
-        <Button
-          variant="info"
-          onClick={() => setShowGuide(true)}
-          style={{
-            width: "40px",
-            height: "40px",
-            backgroundColor: "#138496",
-            color: "white",
-            borderRadius: "50%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            boxShadow: "0 2px 6px rgba(0, 0, 0, 0.2)",
-            border: "none",
-            zIndex: 10,
-            transition: "background-color 0.3s ease-in-out, transform 0.2s ease-in-out",
-            cursor: "pointer",
-          }}
-          onMouseEnter={(e) => {
-            e.target.style.backgroundColor = "#117a8b";
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.backgroundColor = "#138496";
-          }}
-          onMouseDown={(e) => {
-            e.target.style.transform = "scale(0.9)";
-          }}
-          onMouseUp={(e) => {
-            e.target.style.transform = "scale(1)";
-          }}
-        >
-          <FaInfoCircle style={{ fontSize: "1.2rem" }} />
-        </Button>
+  {/* PDF and Excel Buttons */}
+  <div className="d-flex align-items-center gap-2 flex-wrap">
+    {/* PDF Button */}
+    <button
+      onClick={downloadPDF}
+      disabled={isDownloadingPDF}
+      style={{
+        backgroundColor: '#dc3545',
+        color: '#fff',
+        border: 'none',
+        padding: '0.5rem 1rem',
+        fontSize: '1rem',
+        borderRadius: '0.375rem',
+        cursor: isDownloadingPDF ? 'not-allowed' : 'pointer',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '0.5rem',
+        opacity: isDownloadingPDF ? 0.6 : 1,
+      }}
+    >
+      {isDownloadingPDF ? (
+        <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" />
+      ) : (
+        <FaFilePdf />
+      )}
+      Save as PDF
+    </button>
 
-          <div className="d-flex align-items-center gap-2 flex-wrap">
-          {/* PDF Button */}
-          <button
-            onClick={downloadPDF}
-            disabled={isDownloadingPDF}
-            style={{
-              backgroundColor: '#dc3545',
-              color: '#fff',
-              border: 'none',
-              padding: '0.5rem 1rem',
-              fontSize: '1rem',
-              borderRadius: '0.375rem',
-              cursor: isDownloadingPDF ? 'not-allowed' : 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              opacity: isDownloadingPDF ? 0.6 : 1,
-            }}
-          >
-            {isDownloadingPDF ? (
-              <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" />
-            ) : (
-              <FaFilePdf />
-            )}
-            Save as PDF
-          </button>
+    {/* Excel Button */}
+    <button
+      onClick={downloadExcel}
+      disabled={isDownloadingExcel}
+      style={{
+        backgroundColor: '#198754',
+        color: '#fff',
+        border: 'none',
+        padding: '0.5rem 1rem',
+        fontSize: '1rem',
+        borderRadius: '0.375rem',
+        cursor: isDownloadingExcel ? 'not-allowed' : 'pointer',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '0.5rem',
+        opacity: isDownloadingExcel ? 0.6 : 1,
+      }}
+    >
+      {isDownloadingExcel ? (
+        <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" />
+      ) : (
+        <FaFileExcel />
+      )}
+      Save as Excel
+    </button>
+  </div>
+</div>
 
-          {/* Excel Button */}
-          <button
-            onClick={downloadExcel}
-            disabled={isDownloadingExcel}
-            style={{
-              backgroundColor: '#198754',
-              color: '#fff',
-              border: 'none',
-              padding: '0.5rem 1rem',
-              fontSize: '1rem',
-              borderRadius: '0.375rem',
-              cursor: isDownloadingExcel ? 'not-allowed' : 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              opacity: isDownloadingExcel ? 0.6 : 1,
-            }}
-          >
-            {isDownloadingExcel ? (
-              <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" />
-            ) : (
-              <FaFileExcel />
-            )}
-            Save as Excel
-          </button>
-          </div>
-
-        </div>
 
         
 
