@@ -45,17 +45,14 @@ function AiRecommendations() {
   const styles = {
     container: {
       maxWidth: "800px",
-      margin: "0 auto",
+      margin: "auto",
       padding: "2rem",
       fontFamily: "'Poppins', sans-serif",
-      backgroundColor: "#f9f9fb",
-      borderRadius: "12px",
-      boxShadow: "0 8px 16px rgba(0, 0, 0, 0.15)",
       marginTop: "3rem",
     },
     header: {
       textAlign: "center",
-      fontSize: "1.8rem",
+      fontSize: "21px",
       fontWeight: "bold",
       marginBottom: "1rem",
       color: "#2c3e50",
@@ -109,6 +106,8 @@ function AiRecommendations() {
       borderRadius: "8px",
       padding: "0.8rem 1.5rem",
       fontSize: "1.1rem",
+      display: "block",
+      margin: "auto",
       fontWeight: "bold",
       color: "#fff",
       cursor: "pointer",
@@ -140,7 +139,7 @@ function AiRecommendations() {
         </Modal.Footer>
       </Modal>
 
-      <h2 style={styles.header}>✨ Personal AI Assistant</h2>
+      <h2 style={styles.header}>✨Personal AI Assistant</h2>
 
       {loading && (
         <div style={styles.spinnerContainer}>
@@ -152,7 +151,7 @@ function AiRecommendations() {
       {/* Chat Window */}
       <div style={styles.chatWindow}>
         {recommendations.length === 0 ? (
-          <p className="text-muted" style={{ textAlign: "center" }}>
+          <p className="text-muted" style={{ textAlign: "center",fontSize: "1rem" }}>
             Please enter a prompt with your preferences or just click <span className="fw-bold">Generate!</span> to see AI magic happen! ✨
           </p>
         ) : (
