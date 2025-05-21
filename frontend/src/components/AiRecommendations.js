@@ -48,7 +48,6 @@ function AiRecommendations() {
       margin: "auto",
       padding: "2rem",
       fontFamily: "'Poppins', sans-serif",
-      marginTop: "3rem",
     },
     header: {
       textAlign: "center",
