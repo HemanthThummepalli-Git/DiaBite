@@ -386,6 +386,7 @@ const CGMForm = () => {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    flexWrap: 'wrap',
     marginBottom: '1rem',
   }}
 >
@@ -424,8 +425,16 @@ const CGMForm = () => {
     <FaInfoCircle style={{ fontSize: "1.2rem" }} />
   </Button>
 
-  {/* PDF and Excel Buttons */}
-  <div className="d-flex align-items-center gap-2 flex-wrap">
+  {/* PDF and Excel Buttons aligned right even on small screens */}
+  <div
+    className="d-flex gap-2"
+    style={{
+      flexGrow: 1,
+      justifyContent: "flex-end",
+      display: "flex",
+      flexWrap: "wrap",
+    }}
+  >
     {/* PDF Button */}
     <button
       onClick={downloadPDF}
@@ -479,6 +488,7 @@ const CGMForm = () => {
     </button>
   </div>
 </div>
+
 
 
         
