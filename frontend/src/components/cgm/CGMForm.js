@@ -140,241 +140,188 @@ const CGMForm = () => {
 
 
   return (
-    <Container className="d-flex flex-column gap-4 justify-content-center align-items-center mt-4 ">
-      <div className="container mt-4">
-        <div className="row g-4 justify-content-center align-items-center">
-          {/* Sugar Level Tracking Form */}
-          <div
-  style={{
-    width: "100%",
-    maxWidth: "600px",
-    margin: "0 auto",
-    padding: "1rem",
-    boxSizing: "border-box",
-  }}
->
-  <Card
-    style={{
-      padding: "1.5rem",
-      backgroundColor: "#f8f9fa",
-      borderRadius: "12px",
-      border: "1px solid #dee2e6",
-      boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
-      width: "100%",
-      maxWidth: "1000px",
-      margin: "0 auto",
-      boxSizing: "border-box",
-    }}
-  >
-    <h2
-      style={{
-        textAlign: "center",
-        marginBottom: "1.5rem",
-        fontWeight: "600",
-        fontSize: "1.75rem",
-      }}
-    >
-      Sugar Level Tracking
-    </h2>
+<Container className="d-flex flex-column gap-4 justify-content-center align-items-center mt-4 ">
 
-    {message && (
-      <Alert
-        variant="success"
+<div className="container mt-4">
+  <div className="row g-4 justify-content-center align-items-start">
+
+    {/* Form Section */}
+    <div className="col-12 col-lg-6">
+      <Card
         style={{
-          textAlign: "center",
-          fontSize: "1rem",
-          fontWeight: "500",
-          borderRadius: "8px",
+          padding: "1.5rem",
+          backgroundColor: "#f8f9fa",
+          borderRadius: "12px",
+          border: "1px solid #dee2e6",
+          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
         }}
       >
-        {message}
-      </Alert>
+        <h2 style={{ textAlign: "center", marginBottom: "1.5rem", fontWeight: "600", fontSize: "1.75rem" }}>
+          Sugar Level Tracking
+        </h2>
+
+        {message && (
+          <Alert variant="success" style={{ textAlign: "center", fontSize: "1rem", fontWeight: "500", borderRadius: "8px" }}>
+            {message}
+          </Alert>
+        )}
+
+        <Form onSubmit={handleSubmit}>
+          {/* Meal Type and Date */}
+          <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", marginBottom: "1rem" }}>
+            <div style={{ flex: "1", minWidth: "160px" }}>
+              <Form.Group controlId="mealType">
+                <Form.Label style={{ fontWeight: "500", color: "#495057" }}>
+                  <FaUtensils style={{ marginRight: "0.5rem" }} />
+                  Meal Type
+                </Form.Label>
+                <Form.Select
+                  name="mealType"
+                  value={formData.mealType}
+                  onChange={(e) => setFormData({ ...formData, mealType: e.target.value })}
+                  style={{
+                    borderRadius: "8px",
+                    padding: "10px",
+                    border: "1px solid #ced4da",
+                    width: "100%",
+                  }}
+                >
+                  <option value="">Select Meal Type</option>
+                  <option value="breakfast">🍳 Breakfast</option>
+                  <option value="lunch">🥗 Lunch</option>
+                  <option value="dinner">🍽️ Dinner</option>
+                </Form.Select>
+              </Form.Group>
+            </div>
+
+            <div style={{ flex: "1", minWidth: "160px" }}>
+              <Form.Group controlId="date">
+                <Form.Label style={{ fontWeight: "500", color: "#495057" }}>
+                  <FaCalendarAlt style={{ marginRight: "0.5rem" }} />
+                  Date
+                </Form.Label>
+                <Form.Control
+                  type="date"
+                  name="date"
+                  value={formData.date}
+                  onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                  style={{
+                    borderRadius: "8px",
+                    padding: "10px",
+                    border: "1px solid #ced4da",
+                    width: "100%",
+                  }}
+                />
+              </Form.Group>
+            </div>
+          </div>
+
+          {/* Sugar Inputs */}
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", marginTop: "1rem" }}>
+            <div style={{ flex: "1 1 30%", minWidth: "160px" }}>
+              <Form.Group controlId="fastingSugarLevel">
+                <Form.Label style={{ fontWeight: "500", color: "#495057", fontSize: "0.9rem" }}>
+                  <FaHeartbeat style={{ marginRight: "0.5rem" }} />
+                  Fasting Sugar
+                </Form.Label>
+                <Form.Control
+                  type="number"
+                  name="fastingSugarLevel"
+                  value={formData.fastingSugarLevel}
+                  onChange={(e) => setFormData({ ...formData, fastingSugarLevel: e.target.value })}
+                  style={{
+                    borderRadius: "8px",
+                    padding: "10px",
+                    border: "1px solid #ced4da",
+                    width: "100%",
+                  }}
+                />
+              </Form.Group>
+            </div>
+
+            <div style={{ flex: "1 1 30%", minWidth: "160px" }}>
+              <Form.Group controlId="preMealSugarLevel">
+                <Form.Label style={{ fontWeight: "500", color: "#495057", fontSize: "0.9rem" }}>
+                  <FaHeartbeat style={{ marginRight: "0.5rem" }} />
+                  Pre-Meal Sugar
+                </Form.Label>
+                <Form.Control
+                  type="number"
+                  name="preMealSugarLevel"
+                  value={formData.preMealSugarLevel}
+                  onChange={(e) => setFormData({ ...formData, preMealSugarLevel: e.target.value })}
+                  style={{
+                    borderRadius: "8px",
+                    padding: "10px",
+                    border: "1px solid #ced4da",
+                    width: "100%",
+                  }}
+                />
+              </Form.Group>
+            </div>
+
+            <div style={{ flex: "1 1 30%", minWidth: "160px" }}>
+              <Form.Group controlId="postMealSugarLevel">
+                <Form.Label style={{ fontWeight: "500", color: "#495057", fontSize: "0.9rem" }}>
+                  <FaHeartbeat style={{ marginRight: "0.5rem" }} />
+                  Post-Meal Sugar
+                </Form.Label>
+                <Form.Control
+                  type="number"
+                  name="postMealSugarLevel"
+                  value={formData.postMealSugarLevel}
+                  onChange={(e) => setFormData({ ...formData, postMealSugarLevel: e.target.value })}
+                  style={{
+                    borderRadius: "8px",
+                    padding: "10px",
+                    border: "1px solid #ced4da",
+                    width: "100%",
+                  }}
+                />
+              </Form.Group>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            disabled={!isLoggedIn}
+            style={{
+              marginTop: "1.5rem",
+              width: "100%",
+              backgroundColor: "#0d6efd",
+              color: "#fff",
+              border: "none",
+              padding: "12px",
+              fontWeight: "600",
+              fontSize: "1rem",
+              borderRadius: "8px",
+              cursor: isLoggedIn ? "pointer" : "not-allowed",
+            }}
+          >
+            📩 Submit Data
+          </button>
+        </Form>
+      </Card>
+    </div>
+
+    {/* Analysis Section */}
+    {isLoggedIn && analysis && (
+      <div className="col-12 col-lg-6">
+        <Card className="p-4 bg-white shadow-sm h-100">
+          {isLoading ? (
+            <div className="d-flex justify-content-center align-items-center gap-2" style={{ height: "5rem" }}>
+              <Spinner animation="border" variant="primary" />
+              <p style={{ marginTop: "10px", color: "#333" }}>Analyzing your health...</p>
+            </div>
+          ) : (
+            <CGMAnalysis analysis={analysis} />
+          )}
+        </Card>
+      </div>
     )}
-
-    <Form onSubmit={handleSubmit}>
-      {/* Meal Type and Date side by side */}
-      <div
-        style={{
-          display: "flex",
-          gap: "1rem",
-          flexWrap: "wrap",  
-          marginBottom: "1rem",
-        }}
-      >
-      <div style={{ flex: "1", minWidth: "160px" }}>
-          <Form.Group controlId="mealType">
-            <Form.Label style={{ fontWeight: "500", color: "#495057" }}>
-              <FaUtensils style={{ marginRight: "0.5rem" }} />
-              Meal Type
-            </Form.Label>
-            <Form.Select
-              name="mealType"
-              value={formData.mealType}
-              onChange={(e) =>
-                setFormData({ ...formData, mealType: e.target.value })
-              }
-              style={{
-                borderRadius: "8px",
-                padding: "10px",
-                border: "1px solid #ced4da",
-                width: "100%",
-              }}
-            >
-              <option value="">Select Meal Type</option>
-              <option value="breakfast">🍳 Breakfast</option>
-              <option value="lunch">🥗 Lunch</option>
-              <option value="dinner">🍽️ Dinner</option>
-            </Form.Select>
-          </Form.Group>
-        </div>
-
-        <div style={{ flex: "1", minWidth: "160px" }}>
-          <Form.Group controlId="date">
-            <Form.Label style={{ fontWeight: "500", color: "#495057" }}>
-              <FaCalendarAlt style={{ marginRight: "0.5rem" }} />
-              Date
-            </Form.Label>
-            <Form.Control
-              type="date"
-              name="date"
-              value={formData.date}
-              onChange={(e) =>
-                setFormData({ ...formData, date: e.target.value })
-              }
-              style={{
-                borderRadius: "8px",
-                padding: "10px",
-                border: "1px solid #ced4da",
-                width: "100%",
-              }}
-            />
-          </Form.Group>
-        </div>
-      </div>
-
-
-      {/* Other inputs remain the same */}
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "1rem",
-          marginTop: "1rem",
-        }}
-      >
-        <div style={{ flex: "1 1 30%", minWidth: "160px" }}>
-          <Form.Group controlId="fastingSugarLevel">
-            <Form.Label style={{ fontWeight: "500", color: "#495057" , fontSize: "0.9rem"}}>
-              <FaHeartbeat style={{ marginRight: "0.5rem" }} />
-              Fasting Sugar
-            </Form.Label>
-            <Form.Control
-              type="number"
-              name="fastingSugarLevel"
-              value={formData.fastingSugarLevel}
-              onChange={(e) =>
-                setFormData({ ...formData, fastingSugarLevel: e.target.value })
-              }
-              style={{
-                borderRadius: "8px",
-                padding: "10px",
-                border: "1px solid #ced4da",
-                width: "100%",
-              }}
-            />
-          </Form.Group>
-        </div>
-
-        <div style={{ flex: "1 1 30%", minWidth: "160px" }}>
-          <Form.Group controlId="preMealSugarLevel">
-            <Form.Label style={{ fontWeight: "500", color: "#495057" , fontSize: "0.9rem"}}>
-              <FaHeartbeat style={{ marginRight: "0.5rem" }} />
-              Pre-Meal Sugar
-            </Form.Label>
-            <Form.Control
-              type="number"
-              name="preMealSugarLevel"
-              value={formData.preMealSugarLevel}
-              onChange={(e) =>
-                setFormData({ ...formData, preMealSugarLevel: e.target.value })
-              }
-              style={{
-                borderRadius: "8px",
-                padding: "10px",
-                border: "1px solid #ced4da",
-                width: "100%",
-              }}
-            />
-          </Form.Group>
-        </div>
-
-        <div style={{ flex: "1 1 30%", minWidth: "160px" }}>
-          <Form.Group controlId="postMealSugarLevel">
-            <Form.Label style={{ fontWeight: "500", color: "#495057" , fontSize: "0.9rem"}} >
-              <FaHeartbeat style={{ marginRight: "0.5rem" }} />
-              Post-Meal Sugar
-            </Form.Label>
-            <Form.Control
-              type="number"
-              name="postMealSugarLevel"
-              value={formData.postMealSugarLevel}
-              onChange={(e) =>
-                setFormData({ ...formData, postMealSugarLevel: e.target.value })
-              }
-              style={{
-                borderRadius: "8px",
-                padding: "10px",
-                border: "1px solid #ced4da",
-                width: "100%",
-              }}
-            />
-          </Form.Group>
-        </div>
-      </div>
-
-      <button
-        type="submit"
-        disabled={!isLoggedIn}
-        style={{
-          marginTop: "1.5rem",
-          width: "100%",
-          backgroundColor: "#0d6efd",
-          color: "#fff",
-          border: "none",
-          padding: "12px",
-          fontWeight: "600",
-          fontSize: "1rem",
-          borderRadius: "8px",
-          cursor: isLoggedIn ? "pointer" : "not-allowed",
-        }}
-      >
-        📩 Submit Data
-      </button>
-    </Form>
-  </Card>
+  </div>
 </div>
 
-
-
-
-          {/* Analysis Section */}
-          {isLoggedIn && analysis && (
-  <div className="col-12">
-    <Card className="p-4 bg-white shadow-sm">
-      {isLoading ? (
-        <div className="d-flex justify-content-center align-items-center gap-2" style={{ height: "5rem" }}>
-          <Spinner animation="border" variant="primary" />
-          <p style={{ marginTop: "10px", color: "#333" }}>Analyzing your health...</p>
-        </div>
-      ) : (
-        <CGMAnalysis analysis={analysis} />
-      )}
-    </Card>
-  </div>
-)}
-
-        </div>
-      </div>
       
       <div className="w-100">
       <div className="p-3 w-100 mt-4">
