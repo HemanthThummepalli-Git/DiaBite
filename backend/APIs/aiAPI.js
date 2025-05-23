@@ -10,7 +10,7 @@ const { ChatGroq } = require("@langchain/groq");
 
 // Initialize AI Model with Groq API
 const model = new ChatGroq({
-    apiKey: process.env.GROQ_API_KEY,
+    apiKey: "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",
     model: "deepseek-r1-distill-llama-70b",
 });
 
