@@ -12,6 +12,7 @@ import CGMForm from "./components/cgm/CGMForm";
 import FoodTracking from "./components/FoodTracking";
 import OverallDashboard from "./components/OverallDashboard";
 import AiRecommendations from "./components/AiRecommendations";
+import Showcase from "./components/Showcase";
 
 
 function App() {
@@ -55,6 +56,10 @@ function App() {
         {
           path: "/signup3",
           element: <Signup03 />,
+        },
+        {
+          path: "/showcase",
+          element: <Showcase />,
         },
       ],
     },
