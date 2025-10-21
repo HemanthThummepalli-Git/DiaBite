@@ -112,7 +112,7 @@ Ensure MongoDB is running locally or update the connection string in `.env`.
 
 ---
 
-## 📄 License
+Copyright (c) 2025 Diabite&co. All rights reserved.
 
 
 ---
