@@ -100,7 +100,7 @@ Ensure MongoDB is running locally or update the connection string in `.env`.
 | Name                  | Contributions                           |
 |-----------------------|----------------------------------------|
 | **T. Hemanth** | Project coordination, Backend development, AI integration|
-| **N. Sanjay**          | UI/UX design, AI recommendation system implementation  |
+| **N. Sanjay**          | Backend Development,User Dashboard, AI recommendation system implementation  |
 | **P. Nikhita**         | 	Documentation, quality assurance                     |
 | **P. Jithamanyu**      | 	UI/UX design, frontend development    |
 
