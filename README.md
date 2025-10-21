@@ -114,7 +114,6 @@ Ensure MongoDB is running locally or update the connection string in `.env`.
 
 ## 📄 License
 
-This project is licensed for educational and demonstration purposes. Feel free to fork and customize it for your own projects!
 
 ---
 
