@@ -95,7 +95,7 @@ Ensure MongoDB is running locally or update the connection string in `.env`.
 
 ---
 
-## 👨‍💻 Team
+## 👨‍💻 Core Team/Maintainers
 
 | Name                  | Contributions                           |
 |-----------------------|----------------------------------------|
